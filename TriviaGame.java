@@ -9,8 +9,18 @@ public void printScore()
 }
         
 //Instructions for game
-System.out.println("\"HEY YOU!\", Danny Devito's voice blasts into your ear, \"Answer a few questions for me will ya?\"\nSurprised by the appearance of Danny Devito, you take a few moments to process his request. You nod in agreement. \nDanny Devito smiles and then the lights in the room go out.");
-System.out.println(lineBreak + "HOW TO PLAY: \nThis is a trivia game. You have 10 seconds to answer each question. Input \"a\", \"b\", \"c\", \"d\", or \"e\". If you answer all questions correctly, you will win an important advantage.");
+Main.clear();
+Main.delay(500);
+System.out.println("\"HEY YOU!\", Danny Devito's voice blasts into your ear");
+Main.delay(3000);
+System.out.println("\"Answer a few questions for me will ya? and if you do good I might spare ya life\"\nSurprised by the appearance of Danny Devito, you take a few moments to process his request.");
+Main.delay(3000);
+System.out.println("You nod in agreement.");
+Main.delay(3000);
+System.out.println("Danny Devito smiles and then the lights in the room go out.");
+Main.delay(3000);
+Main.clear();
+System.out.println(lineBreak + "HOW TO PLAY: \nThis is a trivia game. You have 10 seconds to answer each question. Input \"a\", \"b\", \"c\", \"d\", or \"e\". If you answer all questions correctly, you will win an important advantage...");
 System.out.println(lineBreak + "FAILING THIS TEST WILL RESULT IN DEATH\n" + lineBreak);
 String start = readLine(lineBreak + "\nReady? Let's begin! Type anything to start the game: \n > ");
         
