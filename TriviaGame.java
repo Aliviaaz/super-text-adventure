@@ -1,28 +1,38 @@
+import java.util.Scanner;
+
 public class TriviaGame
 {
-    String answer = "";
-    int score = 0;
+    public static String answer = "";
+    public static int score = 0;
             
     //Used often in code; stored in variables/methods
-    String lineBreak = "==============================\n";
-    public void printScore()
+    public static String lineBreak = "==============================\n";
+    public static void printScore()
     {
         System.out.println("Your score is: " + score);
     }
+
+    public static Scanner read = new Scanner(System.in);
+    public static String readLine(String prompt)
+    {
+        System.out.println(prompt);
+        return read.nextLine();
+    }
+
 
     public static void aliviaTrivia()
     {
         //Instructions for game
         Main.clear();
-        Main.delay(500);
+        Draw.delay(500);
         System.out.println("\"HEY YOU!\", Danny Devito's voice blasts into your ear");
-        Main.delay(3000);
+        Draw.delay(3000);
         System.out.println("\"Answer a few questions for me will ya? and if you do good I might spare ya life\"\nSurprised by the appearance of Danny Devito, you take a few moments to process his request.");
-        Main.delay(3000);
+        Draw.delay(3000);
         System.out.println("You nod in agreement.");
-        Main.delay(3000);
+        Draw.delay(3000);
         System.out.println("Danny Devito smiles and then the lights in the room go out.");
-        Main.delay(3000);
+        Draw.delay(3000);
         Main.clear();
         System.out.println(lineBreak + "HOW TO PLAY: \nThis is a trivia game. You have 10 seconds to answer each question. Input \"a\", \"b\", \"c\", \"d\", or \"e\". If you answer all questions correctly, you will win an important advantage...");
         System.out.println(lineBreak + "FAILING THIS TEST WILL RESULT IN DEATH\n" + lineBreak);

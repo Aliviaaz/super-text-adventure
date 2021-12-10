@@ -92,7 +92,7 @@ public class Draw
         }
     }
     
-    private static void delay(int time)
+    public static void delay(int time)
     {
         try
         {
