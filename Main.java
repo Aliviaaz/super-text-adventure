@@ -124,8 +124,10 @@ public class Main extends Console
                 {
                     if (scene.doors[direction - 1] <= 0)
                     {
+                        //If door value is negative it means the door is locked or was once locked
                         if (scene.doors[direction - 1] % 4 == 0 && scene.doors[direction - 1] != 0)
                         {
+                            //If the door value is divisible by 4 or is not 0 then the door is unlocked
                             //Set the door value to what room it leads to after being unlocked by converting the string at second index 1 to an int
                             scene.doors[direction - 1] = Integer.parseInt(RoomData.doorInfo[Math.abs((scene.doors[direction - 1]) / 4)][1]);
                             //Set the state to 0 to display the correct art
@@ -135,6 +137,7 @@ public class Main extends Console
                         }
                         else
                         {
+                            //If the door value is not divisible by 
                             //Set the dialouge to the correct response depending on the door value
                             dialouge = RoomData.doorInfo[Math.abs((scene.doors[direction - 1]))][0];
                         }

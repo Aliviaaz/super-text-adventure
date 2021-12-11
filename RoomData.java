@@ -68,38 +68,6 @@ public class RoomData
     //Room 8 (devito final boss battle, player recieves trophy and game ends);
     //boolean devitoAlive = true;
 
-    /*
-    
-    private static void populateRoom3()
-    {
-        Scene.walls[1] = "brickDoor";
-        Scene.walls[2] = "vertWall";
-        Scene.walls[3] = "brickDoor";
-        
-        Scene.messages[1] =
-        Scene.messages[2] = "Theres a wall infront of you made of old peeling tan wall paper.";
-        Scene.messages[3] = "You are hit by the stench of mildew\nA large steel door is to your left with a padlock on it.\nInfront of you is another old door.\nType walk to see whats on the other side...";
-        
-        Scene.doors[0] = 9;
-        Scene.doors[1] = 2;
-        Scene.doors[2] = 0;
-        Scene.doors[3] = 3;
-
-        if (Scene.doors[0] == 9)
-        {
-            Scene.walls[0] = "lockedDoor";
-            Scene.messages[0] = "You stare at the steel door\nYou can hear strange noises coming from inside...\nType i to try and unlock the door";
-        }
-        else
-        {
-            Scene.walls[0] = "openDoor";
-            Scene.messages[0] = "The door hangs open a bit\nYou hesitate to see whats inside\nbut you realize its your only way out.\nType walk to go through...";
-        }
-        
-        Scene.specials[0] = "doorToRoom5";
-    }
-    */
-
     //Populates each room object with data
     public static void init()
     {
@@ -155,6 +123,7 @@ public class RoomData
         room3.doors[1] = 2;
         room3.doors[3] = 3;
         room3.states[0] = 1;
-        room3.specials[0] = "keyDoor";
+        room3.specials[0] = "door";
+        //endregion
     }
 }

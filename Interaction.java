@@ -9,15 +9,29 @@ public class Interaction extends Main
             Draw.art(in);
             readLine("\nPress Enter");
         }
-        else if (in == "keyDoor")
+        else if (in == "door")
         {
-            if (inventoryContains("key"))
+            if (scene.doors[direction - 1] == -2)
             {
-                RoomData.room3.doors[0] = -4;
+                if (inventoryContains("_code"))
+                {
+                    scene.doors[direction - 1] *= 4;
+                }
+                else
+                {
+                    dialouge = "You look at the door and realize you must enter something on the keypad to open the door";
+                }
             }
-            else
+            else if (scene.doors[direction - 1] == -1)
             {
-                dialouge = ("You look at the door and realize you cant open it without a key");
+                if (inventoryContains("key"))
+                {
+                    scene.doors[direction - 1] *= 4;
+                }
+                else
+                {
+                    dialouge = "You look at the door and realize you cant open it without a key";
+                }
             }
         }
         else if (in == "tivia")
