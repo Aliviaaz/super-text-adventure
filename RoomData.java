@@ -1,5 +1,7 @@
 public class RoomData
 { 
+    //Stores constants for each special type of door
+    public static final String[][] doorInfo = {{"There is no door here so you smack straight into the wall and look like an idiot", "0", "true"}, {"The door is locked and you realise you need a key to open it.", "5", "true"}, {"The door is locked and you realise you need a code to open it.", "8", "true"}, {"You opened the door and fell into a trap set by devito", "-3", "false"}};
     //Basic structure of each room
     public static class Room
     {
@@ -26,6 +28,8 @@ public class RoomData
         -1 door locked needs key
         -2 door locked needs code
         -3 booby trap
+        -4 door unlocked
+        -8 door unlocked
         */
         int[] doors = new int[4];
         //Special information for interactions or misc
@@ -151,5 +155,6 @@ public class RoomData
         room3.doors[1] = 2;
         room3.doors[3] = 3;
         room3.states[0] = 1;
+        room3.specials[0] = "keyDoor";
     }
 }

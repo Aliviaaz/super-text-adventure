@@ -131,25 +131,21 @@ public class Main
                 }
                 else if (com.equals("walk"))
                 {
-                    //Takes door value from door array in the scene object
-
-                    final String[][] doorInfo = {{"There is no door here so you smack straight into the wall and look like an idiot", "0", "true"}, {"The door is locked and you realise you need a key to open it.", "5", "true"}, {"The door is locked and you realise you need a code to open it.", "8", "true"}, {"You opened the door and fell into a trap set by devito", "-3", "false"}};
-                    boolean playerHasRequiredItems = inventoryContains("key") || inventoryContains("codeEntered");
                     if (scene.doors[direction - 1] <= 0)
                     {
-                        if (playerHasRequiredItems)
+                        if (scene.doors[direction - 1] % 4 == 0)
                         {
                             //Set the door value to what room it leads to after being unlocked by converting the string at second index 1 to an int
-                            scene.doors[direction - 1] = Integer.parseInt(doorInfo[Math.abs(scene.doors[direction - 1])][1]);
+                            scene.doors[direction - 1] = Integer.parseInt(RoomData.doorInfo[Math.abs((scene.doors[direction - 1]) / 4)][1]);
                             //Set the state to 0 to display the correct art
                             scene.states[direction - 1] = 0;
                             //Set the win boolean by converting the string at second index 2 to a boolean, this only gets set false if the player triggered a booby trap behind a door
-                            win = Boolean.parseBoolean(doorInfo[Math.abs(scene.doors[direction - 1])][2]);
+                            win = Boolean.parseBoolean(RoomData.doorInfo[Math.abs((scene.doors[direction - 1]) / 4)][2]);
                         }
                         else
                         {
                             //Set the dialouge to the correct response depending on the door value
-                            dialouge = doorInfo[Math.abs(scene.doors[direction - 1])][0];
+                            dialouge = RoomData.doorInfo[Math.abs((scene.doors[direction - 1]) / 4)][0];
                         }
                     }
                     else if (scene.doors[direction - 1] == 2)
@@ -275,6 +271,17 @@ public class Main
         {
             clear();
             System.out.println("");
+        }
+        else if (in == "keyDoor")
+        {
+            if (inventoryContains("key"))
+            {
+                RoomData.room3.doors[0] = -4;
+            }
+            else
+            {
+                dialouge = ("You look at the door and realize you cant open it without a key");
+            }
         }
     }
 

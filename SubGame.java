@@ -21,7 +21,7 @@ public class SubGame
             {
                 try
                 {
-                    this.sleep(50);
+                    Thread.sleep(50);
                 }
                 catch (Exception e)
                 {
@@ -33,7 +33,7 @@ public class SubGame
                 {
                     try
                     {
-                        this.sleep(10);
+                        Thread.sleep(10);
                     }
                     catch (Exception e)
                     {
