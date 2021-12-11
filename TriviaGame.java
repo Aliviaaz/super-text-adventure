@@ -1,6 +1,4 @@
-import java.util.Scanner;
-
-public class TriviaGame
+public class TriviaGame extends Main
 {
     public static String answer = "";
     public static int score = 0;
@@ -13,28 +11,21 @@ public class TriviaGame
         System.out.println("Your score is: " + score);
     }
 
-    public static Scanner read = new Scanner(System.in);
-    public static String readLine(String prompt)
+    public static boolean aliviaTrivia()
     {
-        System.out.println(prompt);
-        return read.nextLine();
-    }
-
-
-    public static void aliviaTrivia()
-    {
+        //Method returns wether player won or not
         //Instructions for game
-        Main.clear();
-        Draw.delay(500);
+        clear();
+        delay(500);
         System.out.println("\"HEY YOU!\", Danny Devito's voice blasts into your ear");
-        Draw.delay(3000);
+        delay(3000);
         System.out.println("\"Answer a few questions for me will ya? and if you do good I might spare ya life\"\nSurprised by the appearance of Danny Devito, you take a few moments to process his request.");
-        Draw.delay(3000);
+        delay(3000);
         System.out.println("You nod in agreement.");
-        Draw.delay(3000);
+        delay(3000);
         System.out.println("Danny Devito smiles and then the lights in the room go out.");
-        Draw.delay(3000);
-        Main.clear();
+        delay(3000);
+        clear();
         System.out.println(lineBreak + "HOW TO PLAY: \nThis is a trivia game. You have 10 seconds to answer each question. Input \"a\", \"b\", \"c\", \"d\", or \"e\". If you answer all questions correctly, you will win an important advantage...");
         System.out.println(lineBreak + "FAILING THIS TEST WILL RESULT IN DEATH\n" + lineBreak);
         namestart = readLine(lineBreak + "\nReady? Let's begin! Enter your name to start the game: \n > ");
@@ -105,52 +96,55 @@ public class TriviaGame
         }
 
         //Endscene
-        Main.clear();
-        Draw.delay(500);
+        clear();
+        delay(500);
         if (score < 4)
         {
             System.out.println("The lights in the room turn back on. \n\n\nThe room is eerily silent.");
-            Draw.delay(3000);
+            delay(3000);
             System.out.println("A chill runs down your spine.");
-            Draw.delay(3000);
+            delay(3000);
             System.out.println("\"You did not answer enough questions correctly, " + namestart + "\" echoes Danny Devito behind you...");
-            Draw.delay(3000);
+            delay(3000);
             System.out.println("\"Do you know what this means?\"");
-            Draw.delay(3000);
+            delay(3000);
             System.out.println("You open your mouth to respond but as you turn to look at Danny...");
-            Draw.delay(3000);
+            delay(3000);
             System.out.println("You are blinded by his striking beauty");
-            Draw.delay(3000);
+            delay(3000);
             System.out.println(lineBreak + "YOU DIED. GAME OVER." + lineBreak);
-            //insert game over here
+            return false;
         }
         else if (score == 4)
         {
             System.out.println("The lights in the room turn back on. \n\n\nThe room is eerily silent.");
-            Draw.delay(3000);
+            delay(3000);
             System.out.println("A chill runs down your spine.");
-            Draw.delay(3000);
+            delay(3000);
             System.out.println("\"You answered four questions correctly, " + namestart + "\" echoes Danny Devito behind you...");
-            Draw.delay(3000);
+            delay(3000);
             System.out.println("\"I will let you live...for now.\"");
-            Draw.delay(3000);
+            delay(3000);
             System.out.println("You open your mouth to respond but as you turn around to look at Danny...");
-            Draw.delay(3000);
+            delay(3000);
             System.out.println("he had already disappeared.");
-            //insert game continues here
+            return true;
         }
         else if (score == 5)
         {
             System.out.println("The lights in the room turn back on.");
-            Draw.delay(3000);
+            delay(3000);
             System.out.println("\"Congratulations! You answered all five questions correctly, " + namestart + "!\" exclaims Danny Devito behind you...");
-            Draw.delay(3000);
+            delay(3000);
             System.out.println("\"I will let you live...until we meet again.\"");
-            Draw.delay(3000);
+            delay(3000);
             System.out.println("You open your mouth to respond but as you turn around to look at Danny...");
-            Draw.delay(3000);
+            delay(3000);
             System.out.println("he had already disappeared.");
-            //insert advantage conversation here
+            inventory[inventorySlotAssign] = "_advantage";
+            inventorySlotAssign++;
+            return true;
         }
+        return false;
     }
 }

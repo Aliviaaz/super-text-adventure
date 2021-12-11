@@ -1,4 +1,4 @@
-public class SubGame 
+public class SubGame extends Main
 {
     /*
     Small Puzzle for Text Adventure project that can be implemented
@@ -51,14 +51,14 @@ public class SubGame
         {
             while (true)
             {
-                if (Main.read.nextLine().equals(""))
+                if (read.nextLine().equals(""))
                 {
                     flag = true;
                     break;
                 }
             }
             score -= ((Math.abs(9 - i)) * -1) + 15;
-            Main.read.nextLine();
+            read.nextLine();
             tries--;
             flag = false;
         }
@@ -99,11 +99,5 @@ public class SubGame
         System.out.print(bar);
         System.out.print("|\n\n" + INDENT + "Press Enter > ");
         bar[i] = '_';
-    }
-
-    private static void clear()
-    {
-        System.out.print("\033[H\033[2J");
-        System.out.flush();
     }
 }

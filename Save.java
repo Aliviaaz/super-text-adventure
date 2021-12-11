@@ -4,14 +4,14 @@ import java.io.IOException;
 import java.io.FileNotFoundException;
 import java.util.Scanner;
 
-public class Save
+public class Save extends Main
 {
     private static String[] directory = {"Empty", "Empty", "Empty", "Empty", "Empty", "Empty", "Empty", "Empty", "Empty", "Empty"};
     private static String rawDirData = "";
 
     public static void saveGame(boolean loadingGame)
     {
-        Main.clear();
+        clear();
         System.out.println("==================== Save Games ====================\n");
         for (int i = 0; i < directory.length; i++)
         {
@@ -20,7 +20,7 @@ public class Save
 
         if (loadingGame)
         {
-            String saveName = directory[Integer.parseInt(Main.readLine("Type Number of File to Load > ")) - 1];
+            String saveName = directory[Integer.parseInt(readLine("Type Number of File to Load > ")) - 1];
             try
             {
                 String rawData = "";
@@ -39,7 +39,7 @@ public class Save
         }
         else
         {
-            String saveName = Main.readLine("New Save File\nName of Save > ");
+            String saveName = readLine("New Save File\nName of Save > ");
             try
             {
                 File save = new File("saveGames/" + saveName + ".txt");
@@ -60,7 +60,7 @@ public class Save
             {
                 e.printStackTrace();
             }
-            Main.readLine("Press Enter");
+            readLine("Press Enter");
         }
     }
 
@@ -103,9 +103,9 @@ public class Save
         loadDir();
         try
         {
-            for (String i : directory)
+            for (int i = 0; i < directory.length; i++)
             {
-                i = "Empty";
+                directory[i] = "Empty";
             }
 
             FileWriter dirWrite = new FileWriter("saveGames/dir.txt");
@@ -120,8 +120,8 @@ public class Save
 
     private static String formatSave()
     {
-        String out = "Super Text Adventure Save File\n>\nroomNum: " + Main.roomNum + ";\ndirection: " + Main.direction + ";\nscore: " + Main.score + ";\ndialouge: \"" + Main.dialouge + "\";\ninventory: ";
-        for (String i : Main.inventory)
+        String out = "Super Text Adventure Save File\n>\nroomNum: " + roomNum + ";\ndirection: " + direction + ";\nscore: " + score + ";\ndialouge: \"" + dialouge + "\";\ninventory: ";
+        for (String i : inventory)
         {
             if (i == null)
             {
@@ -133,8 +133,8 @@ public class Save
                 out += "\"" + i + "\", ";
             }
         }
-        out += "\ninventorySlotAssign: " + Main.inventorySlotAssign;
-        for (RoomData.Room r : Main.sceneCollection)
+        out += "\ninventorySlotAssign: " + inventorySlotAssign;
+        for (RoomData.Room r : sceneCollection)
         {
             for (int i = 0; i < 4; i++)
             {

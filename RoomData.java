@@ -72,31 +72,31 @@ public class RoomData
     
     private static void populateRoom3()
     {
-        Main.Scene.walls[1] = "brickDoor";
-        Main.Scene.walls[2] = "vertWall";
-        Main.Scene.walls[3] = "brickDoor";
+        Scene.walls[1] = "brickDoor";
+        Scene.walls[2] = "vertWall";
+        Scene.walls[3] = "brickDoor";
         
-        Main.Scene.messages[1] =
-        Main.Scene.messages[2] = "Theres a wall infront of you made of old peeling tan wall paper.";
-        Main.Scene.messages[3] = "You are hit by the stench of mildew\nA large steel door is to your left with a padlock on it.\nInfront of you is another old door.\nType walk to see whats on the other side...";
+        Scene.messages[1] =
+        Scene.messages[2] = "Theres a wall infront of you made of old peeling tan wall paper.";
+        Scene.messages[3] = "You are hit by the stench of mildew\nA large steel door is to your left with a padlock on it.\nInfront of you is another old door.\nType walk to see whats on the other side...";
         
-        Main.Scene.doors[0] = 9;
-        Main.Scene.doors[1] = 2;
-        Main.Scene.doors[2] = 0;
-        Main.Scene.doors[3] = 3;
+        Scene.doors[0] = 9;
+        Scene.doors[1] = 2;
+        Scene.doors[2] = 0;
+        Scene.doors[3] = 3;
 
-        if (Main.Scene.doors[0] == 9)
+        if (Scene.doors[0] == 9)
         {
-            Main.Scene.walls[0] = "lockedDoor";
-            Main.Scene.messages[0] = "You stare at the steel door\nYou can hear strange noises coming from inside...\nType i to try and unlock the door";
+            Scene.walls[0] = "lockedDoor";
+            Scene.messages[0] = "You stare at the steel door\nYou can hear strange noises coming from inside...\nType i to try and unlock the door";
         }
         else
         {
-            Main.Scene.walls[0] = "openDoor";
-            Main.Scene.messages[0] = "The door hangs open a bit\nYou hesitate to see whats inside\nbut you realize its your only way out.\nType walk to go through...";
+            Scene.walls[0] = "openDoor";
+            Scene.messages[0] = "The door hangs open a bit\nYou hesitate to see whats inside\nbut you realize its your only way out.\nType walk to go through...";
         }
         
-        Main.Scene.specials[0] = "doorToRoom5";
+        Scene.specials[0] = "doorToRoom5";
     }
     */
 

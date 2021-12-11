@@ -1,4 +1,4 @@
-public class Draw
+public class Draw extends Main
 {
     /*
     Credits:
@@ -24,7 +24,7 @@ public class Draw
         }
         else if (i == "spookyDoor")
         {
-            System.out.println("\\                                               /\n \\ ___________________________________________ /\n  |                                           |\n  ||;;==;:=;..=.===.=.=,;==;==-=.=--=.=--;-=-||\n  |                  ______                   |\n  |               ,-' ;  ! `-.                |\n  |              / :  !  :  . \\               |\n  |             |_ ;   __:  ;  |              |\n  |            {)| .  :)(.  !  |              |\n  |             |\"    (##)  _  |              |\n  |             |  :  ;`\'  (_) (              |\n  |             |  :  :  .     |              |\n  |            {)_ !  ,  ;  ;  |              |\n  |             || .  .  :  :  |              |\n  |             |\" .  |  :  .  |              |\n  |_____________|_..__;----.___|______________|\n /                                             \\\n/                                               \\");
+            System.out.println("\\                                               /\n \\ ___________________________________________ /\n  |                                           |\n  ||;;==;:=;..=.===.=.=,;==;==-=.=--=.=--;-=-||\n  |                                           |\n  |                                           |\n  |                  ______                   |\n  |               ,-' ;  ! `-.                |\n  |              / :  !  :  . \\               |\n  |             |_ ;   __:  ;  |              |\n  |            {)| .  :)(.  !  |              |\n  |             |\"    (##)  _  |              |\n  |             |  :  ;`\'  (_) (              |\n  |             |  :  :  .     |              |\n  |            {)_ !  ,  ;  ;  |              |\n  |             || .  .  :  :  |              |\n  |             |\" .  |  :  .  |              |\n  |_____________|_..__;----.___|______________|\n /                                             \\\n/                                               \\");
         }
         else if (i == "oakDoor")
         {
@@ -91,18 +91,6 @@ public class Draw
             System.out.println("ERROR ART NOT FOUND");
         }
     }
-    
-    public static void delay(int time)
-    {
-        try
-        {
-            Thread.sleep(time);
-        }
-        catch (Exception e)
-        {
-            e.printStackTrace();
-        }
-    }
 
     public static void miniMap(int dir)
     {
@@ -126,20 +114,20 @@ public class Draw
     {
         //Plays every time player walks through a door
         delay(500);
-        Main.clear();
+        clear();
         System.out.println("\n\n\n                 ___________\n                |       |   |\n                |       |   |\n                |       |   |\n                |       |   |\n                |       ,   |\n                |       |%==|\n                |       |   |\n                |      ()   |\n                |       |   |\n                |       |   |\n                |       |   |\n                |      ,\'   |\n                |   ,\'      |\n                |,\'_________|");
         delay(500);
-        Main.clear();
+        clear();
         System.out.println("\n\n\n               _______________\n              |               |\n              |               |\n              |               |\n              |               |\n              |               |\n              |+=============+|\n              |               |\n              |               |\n              |               |\n              |               |\n              |               |\n              |               |\n              |               |\n              |               |\n              |               |\n              |_______________|");
         delay(500);
-        Main.clear();
+        clear();
         System.out.println("\n\n\n             ___________________\n            |                   |\n            |                   |\n            |                   |\n            |                   |\n            |                   |\n            |                   |\n            |                   |\n            |+=================+|\n            |                   |\n            |                   |\n            |                   |\n            |                   |\n            |                   |\n            |                   |\n            |                   |\n            |                   |\n            |                   |\n            |                   |\n            |                   |\n            |___________________|");
         delay(500);
     }
 
     public static void firstDoorAnim()
     {
-        Main.clear();
+        clear();
         System.out.println("        |     .  o\n        |  o  |      |   \'      |  o  |      |\n    o   |     |      |   |   \\  .     |      |      |\n        |  .|`--...___   | o    |     |   o  | .    | o  |   |    \n        |  ||o    o   `---...___|     |      |    o |    |   |   o |\n        |  |\'---...___   o      `---...___   |      |    | . |     |\n     -  |  \'-`|     | `--...___ o     o   `---...____  < |   |   / |\n        |    ||     |`--...___ `---...___   o      o |   |   |     |\n        |    || o   |         `---...___ `---..._____|   |   | o   |\n    o   | .  ||     |                   `---...__.\'||    |   |     |\n        |    ||     |                            | ||  o | . |     |\n        | o  ||  _  |                            | ||    |   |     |\n        |    ||     |                            | ||    |   |   o \n    >   |    ||     |                            | ||    |   |     |\n        |  . ||   o |                            | | o | |   |     |\n        |    ||  .  |                            | ||  < |   |     |\n        |    ||  |  |                            |.\'|   .|   |     |\n        |  \\ ||     |                            | || .  |   |     |\n        |    ||o    \'                            | ||    |   |     |\n        |    ||     |                            | ||    |   |     |\n      o |    ||     |      And So You Venture    | ||..\' |   | o   |\n        |    ||     |                            | ||  < |   |     |\n    /   |    ||     |       Into the Unknown     | ||    |   |     |\n        | o  || _   |                            |`||    |   |  .  |\n        |    ||    o|                            | || -  |  -|     |\n        |    ||     |                            |\'||    |   |     |\n   o    |    ||     |                            :\' |    |   |   o |\n        |  - ||     |                            | || o  |   [     |\n        |    ||     |                            | ||    |   |     |\n        |  | ||    o|                            | ||    |   |  _  |\n   -    |  | ||     |                            | ||    |   |     |\n        |    ||     |                            | ||o   |   | o   |\n        |    ||     |                            | ||    |   |     |\n        |    ||   . |                            | ||    |   |     |\n        |   .||o    |                            | ||    |   |    o|\n    o   |    ||     |                        ____| ||    | > |     |\n        |    ||     |        _____ ....--\'`      \'.||____|___|_____|\n   _____|____||     | ..--\'`     .\'                __...\'         ___\n       _      |_____|       ____ __ ___,..  \'\'  `. ___....----\'\'\'\n    \'  _ _..`.  ___`-  --\'` _.\'   ___ ..    -._    .           ____`...\n   \'\'\'\'       \'\'___`...---     --\'       `..   \'.___   ---\'\'\'\'\'\n   ___`.. --\'\'\'\'                ___...----. \'\'");
         delay(5000);
     }
@@ -147,7 +135,7 @@ public class Draw
     public static void startAnim()
     {
         //Opening Cutscene
-        Main.clear();
+        clear();
         delay(500);
         System.out.println("You wake up and find yourself in an empty room...");
         delay(4000);
@@ -155,6 +143,6 @@ public class Draw
         delay(4000);
         System.out.println("You have one objective: to escape");
         delay(4000);
-        Main.clear();
+        clear();
     }
 }

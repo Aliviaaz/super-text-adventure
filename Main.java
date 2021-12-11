@@ -1,14 +1,5 @@
-import java.util.Scanner;
-
-public class Main
+public class Main extends Console
 {
-    //CodeHS tools
-    public static Scanner read = new Scanner(System.in);
-    public static String readLine(String prompt)
-    {
-        System.out.print(prompt);
-        return read.nextLine();
-    }
     //Position on map - default room 1
     public static int roomNum = 1;
     //sceneCollection array stores object references for each room
@@ -55,9 +46,9 @@ public class Main
             roomNum = 1;
             score = 0;
             dialouge = "";
-            for (String i : inventory)
+            for (int i = 0; i < inventory.length; i++)
             {
-                i = "";
+                inventory[i] = "";
             }
             inventorySlotAssign = 0;
 
@@ -133,7 +124,7 @@ public class Main
                 {
                     if (scene.doors[direction - 1] <= 0)
                     {
-                        if (scene.doors[direction - 1] % 4 == 0)
+                        if (scene.doors[direction - 1] % 4 == 0 && scene.doors[direction - 1] != 0)
                         {
                             //Set the door value to what room it leads to after being unlocked by converting the string at second index 1 to an int
                             scene.doors[direction - 1] = Integer.parseInt(RoomData.doorInfo[Math.abs((scene.doors[direction - 1]) / 4)][1]);
@@ -145,7 +136,7 @@ public class Main
                         else
                         {
                             //Set the dialouge to the correct response depending on the door value
-                            dialouge = RoomData.doorInfo[Math.abs((scene.doors[direction - 1]) / 4)][0];
+                            dialouge = RoomData.doorInfo[Math.abs((scene.doors[direction - 1]))][0];
                         }
                     }
                     else if (scene.doors[direction - 1] == 2)
@@ -167,7 +158,7 @@ public class Main
                 else if (com.equals("i"))
                 {
                     //Calls interact method to trigger interactable based on the scene's special value
-                    interact(scene.specials[direction - 1]);
+                    Interaction.interact(scene.specials[direction - 1]);
                 }
                 else if (com.equals("pick"))
                 {
@@ -202,7 +193,7 @@ public class Main
                     System.out.println("\nITEMS IN YOUR INVENTORY:");
                     for (String i : inventory)
                     {
-                        if (i != null)
+                        if (i != null && !i.startsWith("_"))
                         {
                             System.out.println(i + ":");
                             Draw.art(i);
@@ -243,13 +234,6 @@ public class Main
             clear();
         }
     }
-    
-    public static void clear()
-    {
-        //Clears console using ASCII command characters
-        System.out.print("\033[H\033[2J");
-        System.out.flush();
-    }
 
     private static void endGame()
     {
@@ -258,34 +242,7 @@ public class Main
         readLine("\n========================================================================\n \nScore: " + score + "\n" + dialouge + "\nPress Enter to Continue");
     }
 
-    public static void interact(String in)
-    {
-        //Handles all special interactions, mini games, or interactable items in game
-        if (in == "book")
-        {
-            clear();
-            Draw.art("book");
-            readLine("\nPress Enter");
-        }
-        else if (in == "newspapers")
-        {
-            clear();
-            System.out.println("");
-        }
-        else if (in == "keyDoor")
-        {
-            if (inventoryContains("key"))
-            {
-                RoomData.room3.doors[0] = -4;
-            }
-            else
-            {
-                dialouge = ("You look at the door and realize you cant open it without a key");
-            }
-        }
-    }
-
-    private static boolean inventoryContains(String item)
+    public static boolean inventoryContains(String item)
     {
         for (String i : inventory)
         {
