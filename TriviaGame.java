@@ -5,7 +5,7 @@ public class TriviaGame extends Main
     public static String namestart = "";
             
     //Used often in code; stored in variables/methods
-    public static String lineBreak = "==============================\n";
+    public static String lineBreak = "=================================================\n";
     public static void printScore()
     {
         System.out.println("Your score is: " + score);
@@ -17,21 +17,21 @@ public class TriviaGame extends Main
         //Instructions for game
         clear();
         delay(500);
-        System.out.println("\"HEY YOU!\", Danny Devito's voice blasts into your ear");
+        System.out.println("\"HEY YOU!\", Danny Devito's voice blasts into your ear.");
         delay(3000);
-        System.out.println("\"Answer a few questions for me will ya? and if you do good I might spare ya life\"\nSurprised by the appearance of Danny Devito, you take a few moments to process his request.");
+        System.out.println("\"Answer a few questions for me will ya? \nand if you do good I might spare ya life\"\nSurprised by the appearance of Danny Devito, you \ntake a few moments to process his request.");
         delay(3000);
         System.out.println("You nod in agreement.");
         delay(3000);
         System.out.println("Danny Devito smiles and then the lights in the room go out.");
         delay(3000);
         clear();
-        System.out.println(lineBreak + "HOW TO PLAY: \nThis is a trivia game. You have 10 seconds to answer each question. Input \"a\", \"b\", \"c\", \"d\", or \"e\". If you answer all questions correctly, you will win an important advantage...");
+        System.out.println(lineBreak + "HOW TO PLAY: \nThis is a trivia game. Input \"a\", \"b\", \"c\", \"d\", or \"e\". \nIf you answer all questions correctly, you will \nwin an important advantage...");
         System.out.println(lineBreak + "FAILING THIS TEST WILL RESULT IN DEATH\n" + lineBreak);
         namestart = readLine(lineBreak + "\nReady? Let's begin! Enter your name to start the game: \n > ");
                 
         //Question 1
-        answer = readLine(lineBreak + "When is my birthday? \na) November 17, 1944\nb) October 16, 1945\nc) March 2, 1951\nd) July 17, 1963\ne) November 16, 1954\n > " );
+        answer = readLine(lineBreak + "When is my birthday? \na) November 17, 1944\nb) October 16, 1945\nc) March 2, 1951\nd) July 17, 1963\ne) November 16, 1954\n > ");
         if (answer.equals("a"))        
         {
             System.out.println("Correct! Was that a lucky guess???");
@@ -44,7 +44,7 @@ public class TriviaGame extends Main
             printScore();
         }
         //Question 2 
-        answer = readLine(lineBreak + "Where is my hometown? \na) Kansas \nb) California \nc) Pennsylvania \nd) New Jersey \ne) Florida \n >");
+        answer = readLine(lineBreak + "Where is my hometown? \na) Kansas \nb) California \nc) Pennsylvania \nd) New Jersey \ne) Florida \n > ");
         if (answer.equals("d"))
         {
             System.out.println("Correct! You know your stuff, buddy.");
@@ -70,7 +70,7 @@ public class TriviaGame extends Main
             printScore();
         }
         //Question 4
-        answer = readLine(lineBreak + "What is the name of the film production company I founded in 1991? \na) Happy Danny Productions\nb) Searchlight Pictures \nc) Jersey Films\nd) Miramax Films\ne) Devito Studios \n > ");
+        answer = readLine(lineBreak + "What is the name of the film production company \nI founded in 1991? \na) Happy Danny Productions\nb) Searchlight Pictures \nc) Jersey Films\nd) Miramax Films\ne) Devito Studios \n > ");
         if (answer.equals("c"))
         {
             System.out.println("Correct! We could be in a turtle's dream in outer space.");
@@ -104,15 +104,15 @@ public class TriviaGame extends Main
             delay(3000);
             System.out.println("A chill runs down your spine.");
             delay(3000);
-            System.out.println("\"You did not answer enough questions correctly, " + namestart + "\" echoes Danny Devito behind you...");
+            System.out.println("\"You did not answer enough questions correctly, " + namestart + "\" \nechoes Danny Devito behind you...");
             delay(3000);
             System.out.println("\"Do you know what this means?\"");
             delay(3000);
-            System.out.println("You open your mouth to respond but as you turn to look at Danny...");
+            System.out.println("You open your mouth to respond \nbut as you turn to look at Danny...");
             delay(3000);
-            System.out.println("You are blinded by his striking beauty");
+            System.out.println("You are BLINDED by his striking beauty.");
             delay(3000);
-            System.out.println(lineBreak + "YOU DIED. GAME OVER." + lineBreak);
+            System.out.println(lineBreak + "YOU DIED. GAME OVER.\n" + lineBreak);
             return false;
         }
         else if (score == 4)
@@ -121,24 +121,24 @@ public class TriviaGame extends Main
             delay(3000);
             System.out.println("A chill runs down your spine.");
             delay(3000);
-            System.out.println("\"You answered four questions correctly, " + namestart + "\" echoes Danny Devito behind you...");
+            System.out.println("\"You answered four questions correctly, " + namestart + "\" \nechoes Danny Devito behind you...");
             delay(3000);
             System.out.println("\"I will let you live...for now.\"");
             delay(3000);
-            System.out.println("You open your mouth to respond but as you turn around to look at Danny...");
+            System.out.println("You open your mouth to respond \nbut as you turn around to look at Danny...\n");
             delay(3000);
             System.out.println("he had already disappeared.");
             return true;
         }
         else if (score == 5)
         {
-            System.out.println("The lights in the room turn back on.");
+            System.out.println("The lights in the room turn back on.\n\n\n");
             delay(3000);
-            System.out.println("\"Congratulations! You answered all five questions correctly, " + namestart + "!\" exclaims Danny Devito behind you...");
+            System.out.println("\"Congratulations! You answered all five questions \ncorrectly, " + namestart + "!\" exclaims Danny Devito behind you...");
             delay(3000);
             System.out.println("\"I will let you live...until we meet again.\"");
             delay(3000);
-            System.out.println("You open your mouth to respond but as you turn around to look at Danny...");
+            System.out.println("You open your mouth to respond \nbut as you turn around to look at Danny...");
             delay(3000);
             System.out.println("he had already disappeared.");
             inventory[inventorySlotAssign] = "_advantage";
