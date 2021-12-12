@@ -2,7 +2,7 @@ public class SubGame extends Main
 {
     /*
     Small Puzzle for Text Adventure project that can be implemented
-    as a function through the main() function
+    as a method through the main() method
     By: Rowan Clinch
     */
     private final static String INDENT = "                                  ";

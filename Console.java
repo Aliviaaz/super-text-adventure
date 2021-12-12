@@ -1,8 +1,10 @@
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class Console
 {
     //Collection of methods that help with certain operations with flow and GUI
+
     public static void delay(int time)
     {
         //Pauses the CPU thread the program is executing on to give the feeling of time delay
@@ -24,9 +26,26 @@ public class Console
     }
 
     public static Scanner read = new Scanner(System.in);
+
     public static String readLine(String prompt)
     {
+        //Reads input from console
         System.out.print(prompt);
         return read.nextLine();
+    }
+
+    public static int readInt(String prompt)
+    {
+        //Reads integer from console
+        System.out.print(prompt);
+        try
+        {
+            return read.nextInt();
+        }
+        catch (InputMismatchException e)
+        {
+            readInt(prompt);
+        }
+        return 0;
     }
 }
