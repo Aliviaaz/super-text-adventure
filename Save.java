@@ -8,6 +8,7 @@ public class Save extends Main
 {
     private static String[] directory = {"Empty", "Empty", "Empty", "Empty", "Empty", "Empty", "Empty", "Empty", "Empty", "Empty"};
     private static String rawDirData = "";
+    private static boolean directoryOverflow = false;
 
     public static void saveGame(boolean loadingGame)
     {
@@ -20,7 +21,7 @@ public class Save extends Main
 
         if (loadingGame)
         {
-            String saveName = directory[Integer.parseInt(readLine("Type Number of File to Load > ")) - 1];
+            String saveName = directory[readInt("Type Number of File to Load > ") - 1];
             try
             {
                 String rawData = "";
@@ -39,7 +40,24 @@ public class Save extends Main
         }
         else
         {
-            String saveName = readLine("New Save File\nName of Save > ");
+            newSave();
+        }
+    }
+
+    private static void newSave()
+    {
+        String saveName = readLine("New Save File:\nType \'EDIT\' to delete a save file\nName of Save > ");
+        if (saveName.equals("EDIT"))
+        {
+            deleteFile();
+        }
+        else if (directoryOverflow)
+        {
+            System.out.println("Maximum Number of Save Files Exceeded - please delete saves");
+            deleteFile();
+        }
+        else
+        {
             try
             {
                 File save = new File("saveGames/" + saveName + ".txt");
@@ -62,6 +80,29 @@ public class Save extends Main
             }
             readLine("Press Enter");
         }
+    }
+
+    public static void deleteFile()
+    {
+        System.out.println("==================== Save Games ====================\n");
+        for (int i = 0; i < directory.length; i++)
+        {
+            System.out.println((i + 1) + ". " + directory[i] + "\n");
+        }
+
+        int indexOfFile = readInt("Type File Number to Delete: ") - 1;
+        String fileName = directory[indexOfFile] + ".txt";
+        File doc = new File("saveGames/" + fileName);
+        if (doc.delete())
+        {
+            System.out.println("Save File " + fileName + " deleted");
+            directory[indexOfFile] = "Empty";
+        }
+        else
+        {
+            System.out.println("An Error Occured Deleting the Save");
+        }
+        readLine("Press Enter to Continue");
     }
 
     public static void loadDir()
@@ -87,7 +128,15 @@ public class Save extends Main
         {
             if (rawDirData.charAt(i) == ';')
             {
-                directory[arrayIndex] = temp;
+                try
+                {
+                    directory[arrayIndex] = temp;
+                }
+                catch (IndexOutOfBoundsException e)
+                {
+                    directoryOverflow = true;
+                    break;
+                }
                 arrayIndex++;
                 temp = "";
             }
