@@ -141,7 +141,7 @@ public class Draw extends Main
         delay(4000);
         System.out.println("The room is dark and wet and made of old oak wood...");
         delay(4000);
-        System.out.println("You have one objective: to escape");
+        System.out.println("You have one objective: to escape.");
         delay(4000);
         clear();
     }

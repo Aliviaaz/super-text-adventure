@@ -53,7 +53,7 @@ public class Main extends Console
             inventorySlotAssign = 0;
 
             Draw.art("title");
-            System.out.println("NOW WITH VISUALS\n\'Journey Through Danny Devito's Basement...\'\nCreated by: Alivia and Rowan\n\n ============== Instructions ==============\n > start - starts game\n > load - load a saved game\n > save - save progress\n > left - turn left\n > right - turn right\n > walk - move forward\n > i - interact with surroundings\n > pick - pick up items\n > inv - shows invintory\n > help - displays help message\n > quit - quit game\n\n");
+            System.out.println("NOW WITH VISUALS\n\'Journey Through Danny Devito's Basement...\'\nCreated by: Alivia and Rowan\n\n ============== Instructions ==============\n > start - starts game\n > load - load a saved game\n > save - save progress\n > left - turn left\n > right - turn right\n > walk - move forward\n > i - interact with surroundings\n > pick - pick up items\n > inv - shows inventory\n > help - displays help message\n > quit - quit game\n\n");
             //Menu Command Handling
             String input = readLine(" > ");
             if (input.equals("start"))
@@ -169,7 +169,7 @@ public class Main extends Console
                     if (scene.items[direction - 1] == null)
                     {
                         //Handles when there is no item to pick up
-                        dialouge = "There is no item here to pick up so you grab at the air stupidly\nIf you think you already picked something up type inv";
+                        dialouge = "There is no item here to pick up, so you grab at the air stupidly.\nIf you think you already picked something up type inv.";
                     }
                     else
                     {
@@ -224,7 +224,7 @@ public class Main extends Console
                 else if (com.equals("help"))
                 {
                     //Displays help message
-                    System.out.println(" ============== Instructions ==============\nExplore each room look for items to collect, interact with things around\nrooms, and open doors to travel between rooms.\n \n > left - turn left\n > right - turn right\n > walk - move forward\n > i - interact with surroundings\n > pick - pick up items\n > inv - shows invintory\n > help - displays help message\n > quit - quit game");
+                    System.out.println(" ============== Instructions ==============\nExplore each room to look for items to collect, interact with things around\nrooms, and open doors to travel between rooms.\n \n > left - turn left\n > right - turn right\n > walk - move forward\n > i - interact with surroundings\n > pick - pick up items\n > inv - shows inventory\n > help - displays help message\n > quit - quit game");
                     readLine("Press Enter");
                 }
                 else

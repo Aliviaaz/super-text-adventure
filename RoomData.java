@@ -1,7 +1,7 @@
 public class RoomData
 { 
     //Stores constants for each special type of door
-    public static final String[][] doorInfo = {{"There is no door here so you smack straight into the wall and look like an idiot", "0", "true"}, {"The door is locked and you realise you need a key to open it.", "5", "true"}, {"The door is locked and you realise you need a code to open it.", "8", "true"}, {"You opened the door and fell into a trap set by devito", "-3", "false"}};
+    public static final String[][] doorInfo = {{"There is no door here so you smack straight into the wall and look like an idiot.", "0", "true"}, {"The door is locked and you realize you need a key to open it.", "5", "true"}, {"The door is locked and you realize you need a code to open it.", "8", "true"}, {"You opened the door and fell into a trap set by Devito.", "-3", "false"}};
     //Basic structure of each room
     public static class Room
     {
@@ -78,12 +78,12 @@ public class RoomData
         room1.walls[1][0] = "ripped";
         room1.walls[2][0] = "oakWall";
         room1.walls[3][0] = "oakDoor";
-        room1.messages[0][1] = "There is a table in front of you with a book on it titled \'README\'\nand a small candle\nType i to read the book and pick to take the candle...";
-        room1.messages[0][0] = "There is a table in front of you with a book on it titled \'README\'\nType i to read the book";
-        room1.messages[1][1] = "There is a poster on the wall in front of you\nThere is 'ESCAPE' printed clearly on it\nYou feel compelled to rip it off the wall and take it\nType pick to take the poster";
+        room1.messages[0][1] = "There is a table in front of you with a book on it titled \'README\'\nand a small candle.\nType i to read the book and pick to take the candle...";
+        room1.messages[0][0] = "There is a table in front of you with a book on it titled \'README\'.\nType i to read the book.";
+        room1.messages[1][1] = "There is a poster on the wall in front of you.\nThere is 'ESCAPE' printed clearly on it.\nYou feel compelled to rip it off the wall and take it.\nType pick to take the poster.";
         room1.messages[1][0] = "You look back and notice the ripped remains of the poster on the wall.";
         room1.messages[2][0] = "This room feels so famillar and yet so out of this world.";
-        room1.messages[3][0] = "There is a door in front of you\nType walk to open it and proceed to the next room";
+        room1.messages[3][0] = "There is a door in front of you.\nType walk to open it and proceed to the next room.";
         room1.doors[3] = 2;
         room1.specials[0] = "book";
         room1.states[0] = 1;
@@ -97,11 +97,11 @@ public class RoomData
         room2.walls[2][1] = "club";
         room2.walls[2][0] = "brickWall";
         room2.walls[3][0] = "brickDoor";
-        room2.messages[0][0] = "Your startled by a wall of newspaper clippings and photos,\nyou notice articles describing the downfall of the career of cinema great\nDanny Devito...\nType i to take a closer look";
-        room2.messages[1][0] = "You look towards the door to the first room,\nPerhaps you could just hide in there and hope this is a dream.";
-        room2.messages[2][1] = "There is a club on the wall infront of you\nIt seems like it will come in useful later.\nType pick to take it";
-        room2.messages[2][0] = "You look at the cracks worn in the brick,\nthe club seems as it has been used before...\nbut by who.";
-        room2.messages[3][0] = "There is a door infront of you worn by age\nType walk to go through it...\nbut first, what really catches your attention,\nis the club on the wall to your right";
+        room2.messages[0][0] = "You are startled by a wall of newspaper clippings and photos.\nYou notice articles describing the downfall of the career of cinema great\nDanny Devito...\nType i to take a closer look.";
+        room2.messages[1][0] = "You look towards the door to the first room.\nPerhaps you could just hide in there and hope this is a dream.";
+        room2.messages[2][1] = "There is a club on the wall in front of you.\nIt seems like it will come in useful later.\nType pick to take it.";
+        room2.messages[2][0] = "You look at the cracks worn in the brick.\nThe club seems as it has been used before...\nbut by who?";
+        room2.messages[3][0] = "There is a door in front of you worn by age.\nType walk to go through it...\nbut first, what really catches your attention\nis the club on the wall to your right.";
         room2.doors[1] = 1;
         room2.doors[3] = 3;
         room2.specials[0] = "newspapers";
@@ -114,11 +114,11 @@ public class RoomData
         room3.walls[1][0] = "brickDoor";
         room3.walls[2][0] = "vertWall";
         room3.walls[3][0] = "spookyDoor";
-        room3.messages[0][1] = "You stare at the steel door\nYou can hear strange noises coming from inside...\nType i to try and unlock the door";
-        room3.messages[0][0] = "The door hangs open a bit\nYou hesitate to see whats inside\nbut you realize its your only way out.\nType walk to go through...";
+        room3.messages[0][1] = "You stare at the steel door.\nYou can hear strange noises coming from inside...\nType i to try and unlock the door.";
+        room3.messages[0][0] = "The door hangs open a bit.\nYou hesitate to see what's inside,\nbut you realize it is your only way out.\nType walk to go through...";
         room3.messages[1][0] = "You look back at the door to the room with the club.";
-        room3.messages[2][0] = "Theres a wall infront of you made of old peeling tan wall paper.";
-        room3.messages[3][0] = "You are hit by the stench of mildew\nA large steel door is to your left with a padlock on it.\nInfront of you is another old door.\nType walk to see whats on the other side...";
+        room3.messages[2][0] = "There is a wall in front of you with old peeling tan wall paper.";
+        room3.messages[3][0] = "You are hit by the stench of mildew.\nA large steel door to your left has a padlock on it.\nIn front of you is another old door.\nType walk to see what is on the other side...";
         room3.doors[0] = -1;
         room3.doors[1] = 2;
         room3.doors[3] = 3;
