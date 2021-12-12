@@ -53,7 +53,7 @@ public class Main extends Console
             inventorySlotAssign = 0;
 
             Draw.art("title");
-            System.out.println("NOW WITH VISUALS\n\'Journey Through Danny Devito's Basement...\'\nCreated by: Alivia and Rowan\n\n ============== Instructions ==============\n > start - starts game\n > load - load a saved game\n > edit - delete save files\n > save - save progress\n > left - turn left\n > right - turn right\n > walk - move forward\n > i - interact with surroundings\n > pick - pick up items\n > inv - shows invintory\n > help - displays help message\n > quit - quit game\n\n");
+            System.out.println("NOW WITH VISUALS\n\'Journey Through Danny Devito's Basement...\'\nCreated by: Alivia and Rowan\n\n ============== Instructions ==============\n > start - starts game\n > load - load a saved game\n > edit - delete save files\n > save - save progress\n > left - turn left\n > right - turn right\n > walk - move forward\n > i - interact with surroundings\n > pick - pick up items\n > inv - shows inventory\n > help - displays help message\n > quit - quit game\n\n");
             //Menu Command Handling
             String input = readLine(" > ");
             if (input.equals("start"))
