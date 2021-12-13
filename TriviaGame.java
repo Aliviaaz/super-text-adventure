@@ -57,7 +57,7 @@ public class TriviaGame extends Main
             printScore();
         }
         //Question 3
-        answer = readLine(lineBreak + "Which film have I not appeared in? \na) Twins \nb) Daddy's Home 2 \nc) The Lorax \nd) Matilda \ne) Space Jam \n > ");
+        answer = readLine(lineBreak + "Which film have I NOT appeared in? \na) Twins \nb) Daddy's Home 2 \nc) The Lorax \nd) Matilda \ne) Space Jam \n > ");
         if (answer.equals("b"))
         {
             System.out.println("Correct! Did you know I directed the movie Matilda?");

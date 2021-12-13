@@ -65,11 +65,11 @@ public class SubGame extends Main
         
         if (score <= 0)
         {
-            System.out.println("You Won");
+            System.out.println("YOU WON");
         }
         else
         {
-            System.out.println("You Lost");
+            System.out.println("YOU LOST");
         }
     }
 

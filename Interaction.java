@@ -19,7 +19,7 @@ public class Interaction extends Main
                 }
                 else
                 {
-                    dialouge = "You look at the door and realize you must enter something on the keypad to open the door";
+                    dialouge = "You look at the door and realize you must enter something on the keypad to open the door.";
                 }
             }
             else if (scene.doors[direction - 1] == -1)
@@ -30,11 +30,11 @@ public class Interaction extends Main
                 }
                 else
                 {
-                    dialouge = "You look at the door and realize you cant open it without a key";
+                    dialouge = "You look at the door and realize you cannot open it without using a key.";
                 }
             }
         }
-        else if (in == "tivia")
+        else if (in == "trivia")
         {
             win = TriviaGame.aliviaTrivia();
         }
