@@ -49,78 +49,143 @@ public class Console
         return 0;
     }
 
-    //region PRINT COLORS TO CONSOLE
-    // Reset
-    public static final String RESET = "\033[0m";
+    public static class Font
+    {
+        /*
+        Makes the Text Look Pretty
+        IMPORTANT: Program is intended to run on CodeHS where colors look different
+        */     
+        public static void reset()
+        {
+            //Resets values
+            System.out.print("\033[0m");
+        }
 
-    // Colors
-    public static final String BLACK = "\033[0;30m";
-    public static final String RED = "\033[0;31m";
-    public static final String GREEN = "\033[0;32m";
-    public static final String YELLOW = "\033[0;33m";
-    public static final String BLUE = "\033[0;34m";
-    public static final String PURPLE = "\033[0;35m";
-    public static final String CYAN = "\033[0;36m";
-    public static final String WHITE = "\033[0;37m";
+        private static String[] basicColors = {"defualt", "red", "green", "yellow", "blue", "purple", "cyan", "gray", "lred", "lgreen", "lyellow", "lblue", "lpurple", "lcyan", "lgray"};
 
-    // Bold
-    public static final String BLACK_BOLD = "\033[1;30m";
-    public static final String RED_BOLD = "\033[1;31m";
-    public static final String GREEN_BOLD = "\033[1;32m";
-    public static final String YELLOW_BOLD = "\033[1;33m";
-    public static final String BLUE_BOLD = "\033[1;34m";
-    public static final String PURPLE_BOLD = "\033[1;35m";
-    public static final String CYAN_BOLD = "\033[1;36m";
-    public static final String WHITE_BOLD = "\033[1;37m";
+        /**<p>Styles the text to make it look pretty,
+         * Call the method like this
+         * <pre>
+         * Font.format(formatString, str);
+         * 
+         *Font.format("bold-underline-default", "Whatever is inserted here is now bold underlined and defualt color usually black or white");
+         * </pre>Whatever is in the second parameter is formated based on the {@code formatString} parameter
+         * </p>
+         * <p>Acceptable Formats:
+         * <pre>
+         * "default"
+         * "bold"
+         * "light"
+         * "italic"
+         * "underline"
+         * </pre></p>
+         * <p>Acceptable Colors:
+         * <pre>
+         * "default"
+         * "red"
+         * "green"
+         * "yellow"
+         * "blue"
+         * "purple"
+         * "cyan"
+         * "gray"
+         * "lred"
+         * "lgreen"
+         * "lyellow"
+         * "lblue"
+         * "lpurple"
+         * "lcyan"
+         * "lgray"
+         * </pre></p>
+         * 
+         * @param formatString
+         * - String to determine how to format text. Example of acceptable format string {@code"bold-underline-italic-blue"} Formats must always end in a color.
+         * @param str
+         * - String to be formated
+         * @return
+         * - ANSI Text format string. Example: {@code "\033[2;1;4;33m"}
+         */
+        public static String format(String formatString, String str)
+        {
+            String[] formats = {"default", "bold", "light", "italic", "underline"};
+            String[] formatArguments = new String[5];
+            int argumentsArrayPointer = 0;
+            String temp = "";
+            for (int i = 0; true; i++)
+            {
+                try
+                {
+                    formatString.charAt(i + 1);
+                }
+                catch (IndexOutOfBoundsException e)
+                {
+                    temp += formatString.charAt(i);
+                    formatArguments[argumentsArrayPointer] = temp;
+                    temp = "";
+                    break;
+                }
 
-    // Underline
-    public static final String BLACK_UNDERLINED = "\033[4;30m";
-    public static final String RED_UNDERLINED = "\033[4;31m";
-    public static final String GREEN_UNDERLINED = "\033[4;32m";
-    public static final String YELLOW_UNDERLINED = "\033[4;33m";
-    public static final String BLUE_UNDERLINED = "\033[4;34m";
-    public static final String PURPLE_UNDERLINED = "\033[4;35m";
-    public static final String CYAN_UNDERLINED = "\033[4;36m";
-    public static final String WHITE_UNDERLINED = "\033[4;37m";
+                if (formatString.charAt(i) == '-')
+                {
+                    formatArguments[argumentsArrayPointer] = temp;
+                    temp = "";
+                    argumentsArrayPointer++;
+                }
+                else
+                {
+                    temp += formatString.charAt(i);
+                }
+            }
 
-    // Background
-    public static final String BLACK_BACKGROUND = "\033[40m";
-    public static final String RED_BACKGROUND = "\033[41m";
-    public static final String GREEN_BACKGROUND = "\033[42m";
-    public static final String YELLOW_BACKGROUND = "\033[43m";
-    public static final String BLUE_BACKGROUND = "\033[44m";
-    public static final String PURPLE_BACKGROUND = "\033[45m";
-    public static final String CYAN_BACKGROUND = "\033[46m";
-    public static final String WHITE_BACKGROUND = "\033[47m";
+            String out = "\033[";
+            for (int i = 0; i < formatArguments.length; i++)
+            {
+                for (int n = 0; n < formats.length; n++)
+                {
+                    if (formats[n].equals(formatArguments[i]))
+                    {
+                        out += n + ";";
+                    }
+                }
 
-    // High Intensity
-    public static final String BLACK_BRIGHT = "\033[0;90m";
-    public static final String RED_BRIGHT = "\033[0;91m";
-    public static final String GREEN_BRIGHT = "\033[0;92m";
-    public static final String YELLOW_BRIGHT = "\033[0;93m";
-    public static final String BLUE_BRIGHT = "\033[0;94m";
-    public static final String PURPLE_BRIGHT = "\033[0;95m";
-    public static final String CYAN_BRIGHT = "\033[0;96m"; 
-    public static final String WHITE_BRIGHT = "\033[0;97m";
+                if (formatArguments[i + 1] == null)
+                {
+                    out += getColorCode(formatArguments[i]) + "m";
+                    break;
+                }
+            }
+            return out + str + RESET;
+        }
 
-    // Bold High Intensity
-    public static final String BLACK_BOLD_BRIGHT = "\033[1;90m";
-    public static final String RED_BOLD_BRIGHT = "\033[1;91m";
-    public static final String GREEN_BOLD_BRIGHT = "\033[1;92m";
-    public static final String YELLOW_BOLD_BRIGHT = "\033[1;93m";
-    public static final String BLUE_BOLD_BRIGHT = "\033[1;94m";
-    public static final String PURPLE_BOLD_BRIGHT = "\033[1;95m";
-    public static final String CYAN_BOLD_BRIGHT = "\033[1;96m";
-    public static final String WHITE_BOLD_BRIGHT = "\033[1;97m";
+        private static int getColorCode(String color)
+        {
+            for (int i = 0; i < basicColors.length; i++)
+            {
+                if (basicColors[i].equals(color))
+                {
+                    int out = i;
+                    if (out > 7)
+                    {
+                        out = (out - 7) + 90;
+                    }
+                    else if (out == 0)
+                    {
+                        out = 0;
+                    }
+                    else
+                    {
+                        out += 30;
+                    }
+                    return out;
+                }
+            }
+            return 0;
+        }
 
-    // High Intensity backgrounds
-    public static final String BLACK_BACKGROUND_BRIGHT = "\033[0;100m";
-    public static final String RED_BACKGROUND_BRIGHT = "\033[0;101m";
-    public static final String GREEN_BACKGROUND_BRIGHT = "\033[0;102m";
-    public static final String YELLOW_BACKGROUND_BRIGHT = "\033[0;103m";
-    public static final String BLUE_BACKGROUND_BRIGHT = "\033[0;104m";
-    public static final String PURPLE_BACKGROUND_BRIGHT = "\033[0;105m";
-    public static final String CYAN_BACKGROUND_BRIGHT = "\033[0;106m";
-    public static final String WHITE_BACKGROUND_BRIGHT = "\033[0;107m";
-    //endregion
+        //Reset Values but can be referenced as a variable instead
+        public static final String RESET = "\033[0m";
+
+        public static final String INPUT_BLUE = "\033[0;34m";
+        public static final String INPUT_GREEN = "\033[0;32m";
+    }
 }

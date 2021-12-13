@@ -53,9 +53,10 @@ public class Main extends Console
             inventorySlotAssign = 0;
 
             Draw.art("title");
-            System.out.println("NOW WITH VISUALS\n\'Journey Through Danny Devito's Basement...\'\nCreated by: Alivia and Rowan\n\n ============== Instructions ==============\n > start - starts game\n > load - load a saved game\n > edit - delete save files\n > save - save progress\n > left - turn left\n > right - turn right\n > walk - move forward\n > i - interact with surroundings\n > pick - pick up items\n > inv - shows invintory\n > help - displays help message\n > quit - quit game\n\n");
+            System.out.println("NOW WITH VISUALS " + Font.format("red", "A") + Font.format("green", "N") + Font.format("yellow", "D ") + Font.format("blue", "I") + Font.format("purple", "N ") + Font.format("cyan", "C") + Font.format("lred", "O") + Font.format("lgreen", "L") + Font.format("lyellow", "O") + Font.format("lblue", "R") + Font.format("italic-default", "\n\'Journey Through Danny Devito's Basement...\'") + "\nCreated by: Alivia and Rowan\n\n" + Font.format("bold-italic-default" ," ============== Instructions ==============\n\n") + Font.RESET + Font.format("green", " GREEN ") + "Start Menu Only Commands\n" + Font.format("blue", " BLUE ") + "In Game Commands Only\n" + Font.format("cyan", " CYAN ") + "Both in Game and Start Menu Commands\n >" + Font.format("green", " start") + " - starts game\n >" + Font.format("cyan", " load") + " - load a saved game\n >" + Font.format("green", " edit") + " - delete save files\n >" + Font.format("blue", " save") + " - save progress\n >" + Font.format("blue", " left") + " - turn left\n >" + Font.format("blue", " right") + " - turn right\n >" + Font.format("blue", " walk") + " - move forward\n >" + Font.format("blue", " i") + " - interact with surroundings\n >" + Font.format("blue",  " pick") + " - pick up items\n >" + Font.format("blue", " inv") + " - shows invintory\n >" + Font.format("blue", " help") + " - displays help message\n >" + Font.format("cyan", " quit") + " - quit game\n\n");
             //Menu Command Handling
-            String input = readLine(" > ");
+            String input = readLine(Font.INPUT_GREEN + " > ");
+            Font.reset();
             if (input.equals("start"))
             {
                 //Starts game by flipping the win boolean
@@ -73,6 +74,28 @@ public class Main extends Console
                 //Calls deleteFile method to display the file managment screen
                 Save.deleteFile();
             }
+            else if (input.equals("color"))
+            {
+                //Prints out color test
+                for (int r = 0; r < 5; r++)
+                {
+                    for (int i = 0; i < 107; i++)
+                    {
+                        if (i % 10 != 0)
+                        {
+                            System.out.print("\033[" + r + ";" + i + "m#" + i + "-" + r);
+                        }
+                        else
+                        {
+                            System.out.println("\033[" + r + ";" + i + "m#" + i + "-" + r);
+                        }
+                        Font.reset();
+                    }
+                    Font.reset();
+                }
+                Font.reset();
+                readLine("Color Test Complete - Press Enter");
+            }
             else if (input.equals("quit"))
             {
                 //Flips menu boolean breaking out of menu and killing program
@@ -81,7 +104,7 @@ public class Main extends Console
             else
             {
                 //Handle incorrect entry
-                System.out.println("Error: You Might Have Entered the Wrong Command, Try start or quit");
+                System.out.println(Font.format("bold-red", "Error:") + " You Might Have Entered the Wrong Command, Try start or quit");
             }
             
             //Main Game Loop
@@ -101,7 +124,8 @@ public class Main extends Console
                 System.out.println("\n=================================================\n");
                 
                 //Handle entered commands in game
-                String com = readLine("\n > ");
+                String com = readLine(Font.INPUT_BLUE + "\n > ");
+                Font.reset();
                 if (com.equals("left"))
                 {
                     //Turns to wall to the right by adding 1 to direction or recursing to 1 if direction = 4
@@ -236,7 +260,7 @@ public class Main extends Console
                 else
                 {
                     //Handles any incorrect entry
-                    dialouge = "Error: You Might Have Entered an Incorrect Command Type help";
+                    dialouge = Font.format("bold-red", "Error:") + " You Might Have Entered an Incorrect Command Type help";
                 }
                 clear();
             }

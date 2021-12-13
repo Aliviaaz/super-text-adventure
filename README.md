@@ -1,7 +1,8 @@
 # super-text-adventure
 CodeHS bad
 # Example save file
-```Super Text Adventure Save File
+```
+Super Text Adventure Save File
 >
 roomNum: 0;
 direction: 0;
