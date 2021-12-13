@@ -61,7 +61,7 @@ public class Console
             System.out.print("\033[0m");
         }
 
-        private static String[] basicColors = {"defualt", "red", "green", "yellow", "blue", "purple", "cyan", "gray", "lred", "lgreen", "lyellow", "lblue", "lpurple", "lcyan", "lgray"};
+        private static String[] basicColors = {"default", "red", "green", "yellow", "blue", "purple", "cyan", "gray", "lred", "lgreen", "lyellow", "lblue", "lpurple", "lcyan", "lgray"};
 
         /**<p>Styles the text to make it look pretty,
          * Call the method like this
@@ -107,7 +107,7 @@ public class Console
          */
         public static String format(String formatString, String str)
         {
-            String[] formats = {"default", "bold", "light", "italic", "underline"};
+            String[] formats = {"def", "bold", "light", "italic", "underline"};
             String[] formatArguments = new String[5];
             int argumentsArrayPointer = 0;
             String temp = "";
@@ -138,7 +138,7 @@ public class Console
             }
 
             String out = "\033[";
-            for (int i = 0; i < formatArguments.length; i++)
+            for (int i = 0; i < formatArguments.length + 1; i++)
             {
                 for (int n = 0; n < formats.length; n++)
                 {
@@ -159,27 +159,27 @@ public class Console
 
         private static int getColorCode(String color)
         {
+            int out = 0;
             for (int i = 0; i < basicColors.length; i++)
             {
                 if (basicColors[i].equals(color))
                 {
-                    int out = i;
-                    if (out > 7)
+                    out = i;
+                    if (i == 0)
+                    {
+                        out = 10;
+                    }
+                    else if (i > 7)
                     {
                         out = (out - 7) + 90;
-                    }
-                    else if (out == 0)
-                    {
-                        out = 0;
                     }
                     else
                     {
                         out += 30;
                     }
-                    return out;
                 }
             }
-            return 0;
+            return out;
         }
 
         //Reset Values but can be referenced as a variable instead
