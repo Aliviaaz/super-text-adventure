@@ -13,15 +13,16 @@ public class Save extends Main
     public static void saveGame(boolean loadingGame)
     {
         clear();
-        System.out.println("==================== Save Games ====================\n");
+        System.out.println(Font.format("bold-italic-default", "==================== Save Games ====================\n"));
         for (int i = 0; i < directory.length; i++)
         {
-            System.out.println((i + 1) + ". " + directory[i] + "\n");
+            System.out.println(Font.format("bold-blue", (i + 1) + ". ") + directory[i] + "\n");
         }
 
         if (loadingGame)
         {
-            String saveName = directory[readInt("Type Number of File to Load > ") - 1];
+            String saveName = directory[readInt(Font.format("bold-default", "TYPE NUMBER OF FILE TO LOAD $") + Font.INPUT_GREEN + " > ") - 1];
+            Font.reset();
             try
             {
                 String rawData = "";
@@ -46,7 +47,8 @@ public class Save extends Main
 
     private static void newSave()
     {
-        String saveName = readLine("New Save File:\nType \'EDIT\' to delete a save file\nName of Save > ");
+        String saveName = readLine(Font.format("bold-default", "New Save File:") + "\nType " + Font.format("italic-defualt", "\'EDIT\'") + " to delete a save file\n" + Font.format("bold-default", "Name of Save: " + Font.INPUT_GREEN));
+        Font.reset();
         if (saveName.equals("EDIT"))
         {
             deleteFile();

@@ -46,6 +46,24 @@ public class SubGame extends Main
 
     public static void floatingPointGame()
     {
+        clear();
+        delay(2000);
+        System.out.println(Font.format("italic-red", "Danny DeVito emerges..."));
+        delay(2000);
+        System.out.println(Font.format("italic-red", "You are shocked to finally see him in his true form"));
+        delay(2000);
+        System.out.println(Font.format("italic-red", "He is skinny and pasty, however you realize that..."));
+        delay(2000);
+        for (int i  = 0; i < 6; i++)
+        {
+            clear();
+            if (i % 2 == 0)
+            {
+                Draw.art("dannyFight");
+            }
+            delay(1000);
+        }
+
         t.start();
         while (tries > 0)
         {
