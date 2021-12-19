@@ -20,7 +20,8 @@ public class Console
 
     public static void clear()
     {
-        //Clears console using ASCII command characters
+        //Clears console using ANSI command sequences
+        //\033 defines it as an escape code command - [H sets the cursor to the beggining of the screen - \033 defines new escape - [2J clears console
         System.out.print("\033[H\033[2J");
         System.out.flush();
     }

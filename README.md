@@ -1,5 +1,7 @@
 # super-text-adventure
 CodeHS bad
+# Important Stuff
+[ANSI and ASCII Control Characters and Sequences](https://gist.github.com/fnky/458719343aabd01cfb17a3a4f7296797)
 # Example save file
 ```
 Super Text Adventure Save File
@@ -31,7 +33,7 @@ room2:states:1: 1;
  \___ \ | | / _ \ |  \| | |   |  _|    _____ _____ _____ _____ _____ _____ _____ _____ _____\ \
   ___) || |/ ___ \| |\  | |___| |___  |_____|_____|_____|_____|_____|_____|_____|_____|_____/ /
  |____/ |_/_/   \_\_| \_|\____|_____|                                                      /_/ 
- 
+
                                    ______
                                 .'        `.                       
                               .'            `.                      
@@ -60,3 +62,40 @@ room2:states:1: 1;
                  '_: . '
                    '_:'
 ```
+
+# Newspapers
+```
+                                                          ____________________________________
+     __                                                 /|   December 15 2021                 |
+   .'  `""*****------------........________            / |                                    |
+  /      _______...........______________  `\         /  | ||\  ||  ||''' \\        // |''''  |
+ : .j"""'                  ___  __  _    `T`*;       /___| || \ ||  ||---  \\  /\  //  `---,  |
+ |/ :     |   |  /\  |\  |  |  |   | \    |         |      ||  \||  ||___   \\//\\//   ____|  |
+    `;    | ^ | :__: | \ |  |  |-  |  ;   |         |                                         |
+     |    |/ \| |  | |  \|  |  |__ |_/ .-*'         |    ================================     |               
+     |      ____...MR. DEVITO...____   `".          |  DANNY DEVITO CAUGHT! - Charges against |
+     |    .P""""""""""""""""""""""""T.    |         |      famous actor Danny DeVito came out |
+      `-. T      ,'           \      T    |         |   yesterday saying he was responsible   |
+     .-'  ;     :   ,*'"*v*"*  ;     :    |         |   for the death of arch enemy Larry     |
+     |    |     |  / __     __ |     |    |         |   David. Many attribute this to his     |
+     |    |     ,-:-{o }-ˆ-{o };     |    |         |   recent downward spiral after the end  |
+     |    |     ;P   ''     '' |  :  |              |   of "Its Always Sunny in Philidelphia".|
+     ;    |     `-.      ,     |     |  .'          |   Sources say he is in the wind and many|
+     ;    |       :   -____-  '      |  `.          |   suspect he is hiding out in the cellar|
+     :    |       |`.    -   /       |    ;         |   of his upstate New York house.        |
+     `;   |     _.:  `-.__.'         |    |         \  /\        /\            /\  /\      /\/
+      `-, ; ,-*'   `-.__.-''*-._     :    |          \/  \/\    /  \  /\/\  /\/  \/  \  /\/
+     ,-': b:                    `.   d    |                 \  /    \/    \/          \/
+    :     `b________________________d'   /,                  \/ 
+    |       """"FOR MANSLAUGHTER""""     "|     
+    `;     _   __              _   _      |     
+     `;   | \ |   |   |   /\  | \ | \     |          
+    ._|   |_/ |-  | ^ |  :__: |_/ |  ;  ,',         
+    `.    | \ |__ |/ \|  |  | | \ |_/    `|     
+      ;        _     _     _     _    .|-,`,    
+[bug] |   /|  / \   / \   / \   / \  (_|_  :    
+   __ :    | :   ; :   ; :   ; :   ;   | ) |    .
+   \ `'-._ |  \_/   \_/   \_/   \_/  `-|"  |   /;
+    \     `***-----...__     _____.....----+-*'/ 
+     `-.__...-----...   `:,-'               _.'  
+                     `**--..____...----***''

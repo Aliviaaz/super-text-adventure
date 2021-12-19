@@ -32,7 +32,10 @@ public class RoomData
         -8 door unlocked
         */
         int[] doors = new int[4];
-        //Special information for interactions or misc
+        /*
+        Special information for interactions or misc
+        if specials string starts with "$" then send special value to art function
+        */
         String[] specials = new String[4];
         /*
         Stores the state of items on a wall or the state of interaction
@@ -80,12 +83,12 @@ public class RoomData
         room1.walls[3][0] = "oakDoor";
         room1.messages[0][1] = "There is a table in front of you with a book on it titled \'README\'\nand a small candle.\nType i to read the book and pick to take the candle...";
         room1.messages[0][0] = "There is a table in front of you with a book on it titled \'README\'.\nType i to read the book.";
-        room1.messages[1][1] = "There is a poster on the wall in front of you.\nThere is 'ESCAPE' printed clearly on it.\nYou feel compelled to rip it off the wall and take it.\nType pick to take the poster.";
+        room1.messages[1][1] = "There is a poster on the wall in front of you.\nThere is 'ESCAPE' printed clearly on it and series of incoherent words and scribbles riten below.\nYou feel compelled to rip it off the wall and take it.\nType pick to take the poster.";
         room1.messages[1][0] = "You look back and notice the ripped remains of the poster on the wall.";
         room1.messages[2][0] = "This room feels so famillar and yet so out of this world.";
         room1.messages[3][0] = "There is a door in front of you.\nType walk to open it and proceed to the next room.";
         room1.doors[3] = 2;
-        room1.specials[0] = "book";
+        room1.specials[0] = "$book";
         room1.states[0] = 1;
         room1.states[1] = 1;
         room1.items[0] = "candle";
@@ -104,7 +107,7 @@ public class RoomData
         room2.messages[3][0] = "There is a door in front of you worn by age.\nType walk to go through it...\nbut first, what really catches your attention\nis the club on the wall to your right.";
         room2.doors[1] = 1;
         room2.doors[3] = 3;
-        room2.specials[0] = "newspapers";
+        room2.specials[0] = "$newspapers";
         room2.states[2] = 1;
         room2.items[2] = "weapon";
         //endregion
@@ -124,6 +127,10 @@ public class RoomData
         room3.doors[3] = 3;
         room3.states[0] = 1;
         room3.specials[0] = "door";
+        //endregion
+        //region ROOM 4
+        //endregion
+        //region ROOM 5
         //endregion
     }
 }

@@ -3,7 +3,7 @@ public class Interaction extends Main
     public static void interact(String in)
     {
         //Handles all special interactions, mini games, or interactable items in game
-        if (in == "book" || in == "newspapers")
+        if (in.startsWith("$"))
         {
             clear();
             Draw.art(in);
