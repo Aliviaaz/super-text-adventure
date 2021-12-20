@@ -1,5 +1,10 @@
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.util.Scanner;
+
 public class RoomData
 { 
+    //IMPORTANT: Turn on word wrap when viewing this file because the object declarations are big
     //Stores constants for each special type of door
     public static final String[][] doorInfo = {{"There is no door here so you smack straight into the wall and look like an idiot.", "0", "true"}, {"The door is locked and you realize you need a key to open it.", "5", "true"}, {"The door is locked and you realize you need a code to open it.", "8", "true"}, {"You opened the door and fell into a trap set by Devito.", "-3", "false"}};
     //Basic structure of each room
@@ -7,9 +12,16 @@ public class RoomData
     {
         //Name of object only used when creating save files
         String name = "";
-        public Room(String roomName)
+        //Constructor loads data into class
+        public Room(String roomName, String[][] wall, String[][] message, int[] door, String[] special, int[] state, String[] item)
         {
             name = roomName;
+            walls = wall;
+            messages = message;
+            doors = door;
+            specials = special;
+            states = state;
+            items = item;
         }
         /*
         Stores the key to what wall should be printed - parent array stores which wall it is and 
@@ -49,14 +61,19 @@ public class RoomData
     }
 
     //Room 1
-    //If posterOnWall = false, the player has seen the poster and taken it.
-    public static Room room1 = new Room("room1");
+    private static String[][] wall = {{"tableNoLighter", "table"}, {"ripped", "poster"}, {"oakWall", "n"}, {"oakDoor", "n"}};
+    private static String[][] arr2 = {{"There is a table in front of you with a book on it titled \'README\'.\nType i to read the book.", "There is a table in front of you with a book on it titled \'README\'\nand a small candle.\nType i to read the book and pick to take the candle..."}, {"You look back and notice the ripped remains of the poster on the wall.", "There is a poster on the wall in front of you.\nThere is 'ESCAPE' printed clearly on it and series of incoherent words and scribbles riten below.\nYou feel compelled to rip it off the wall and take it.\nType pick to take the poster."}, {"This room feels so famillar and yet so out of this world.", "n"}, {"There is a door in front of you.\nType walk to open it and proceed to the next room.", "n"}};
+    private static int[] arr3 = {0,0,0,2};
+    private static String[] arr4 = {"$book", "n", "n", "n"};
+    private static int[] arr5 = {1,1,0,0};
+    private static String[] arr6 = {"candle", "paper", "n", "n"};
+    public static Room room1 = new Room("room1", wall, arr2, arr3, arr4, arr5, arr6);
     //Room 2
     //If clubOnGround = false, the player has the club in their inventory.
-    public static Room room2 = new Room("room2");
+    //public static Room room2 = new Room("room2");
     
     //Room 3 (does not have any items, key needed to get into room 4)
-    public static Room room3 = new Room("room3");
+    //public static Room room3 = new Room("room3");
     //Room 4
     //If keyPresent = false, the player has the key in their inventory
     
@@ -71,29 +88,28 @@ public class RoomData
     //Room 8 (devito final boss battle, player recieves trophy and game ends);
     //boolean devitoAlive = true;
 
+    public static String loadResources()
+    {
+        String resourceData = "";
+        try
+        {
+            Scanner resourceRead = new Scanner(new File("resources.txt"));
+            while (resourceRead.hasNextLine())
+            {
+                resourceData += resourceRead.nextLine();
+            }
+            resourceRead.close();
+        }
+        catch (FileNotFoundException e)
+        {
+            e.printStackTrace();
+        }
+    }
+
     //Populates each room object with data
+    /*
     public static void init()
     {
-        //region ROOM 1
-        room1.walls[0][1] = "table";
-        room1.walls[0][0] = "tableNoLighter";
-        room1.walls[1][1] = "poster";
-        room1.walls[1][0] = "ripped";
-        room1.walls[2][0] = "oakWall";
-        room1.walls[3][0] = "oakDoor";
-        room1.messages[0][1] = "There is a table in front of you with a book on it titled \'README\'\nand a small candle.\nType i to read the book and pick to take the candle...";
-        room1.messages[0][0] = "There is a table in front of you with a book on it titled \'README\'.\nType i to read the book.";
-        room1.messages[1][1] = "There is a poster on the wall in front of you.\nThere is 'ESCAPE' printed clearly on it and series of incoherent words and scribbles riten below.\nYou feel compelled to rip it off the wall and take it.\nType pick to take the poster.";
-        room1.messages[1][0] = "You look back and notice the ripped remains of the poster on the wall.";
-        room1.messages[2][0] = "This room feels so famillar and yet so out of this world.";
-        room1.messages[3][0] = "There is a door in front of you.\nType walk to open it and proceed to the next room.";
-        room1.doors[3] = 2;
-        room1.specials[0] = "$book";
-        room1.states[0] = 1;
-        room1.states[1] = 1;
-        room1.items[0] = "candle";
-        room1.items[1] = "paper";
-        //endregion
         //region ROOM 2
         room2.walls[0][0] = "newspaper";
         room2.walls[1][0] = "oakDoor";
@@ -133,4 +149,5 @@ public class RoomData
         //region ROOM 5
         //endregion
     }
+    */
 }

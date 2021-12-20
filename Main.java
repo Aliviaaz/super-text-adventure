@@ -3,17 +3,17 @@ public class Main extends Console
     //Position on map - default room 1
     public static int roomNum = 1;
     //sceneCollection array stores object references for each room
-    public static RoomData.Room[] sceneCollection = {RoomData.room1, RoomData.room2, RoomData.room3};
+    public static RoomData.Room[] sceneCollection = {RoomData.room1};
     //Current scene to read from
     public static RoomData.Room scene = null;
     /*Direction - default north
-                 1
+                 0
                  |
-            2----|----4
+            1----|----3
                  |
-                 3
+                 2
     */
-    public static int direction = 1;
+    public static int direction = 0;
     /*Commands
         > left
         > right
@@ -37,12 +37,10 @@ public class Main extends Console
         //Menu Loop
         while (menu)
         {
-            //Initalize roomData to create rooms
-            RoomData.init();
             //Initalize file save system
             Save.loadDir();
             //Reset Values for New Game
-            direction = 1;
+            direction = 0;
             roomNum = 1;
             score = 0;
             dialouge = "";
@@ -119,8 +117,8 @@ public class Main extends Console
                 Draw.miniMap(direction);
                 dialouge = "";
                 System.out.println("=================================================\n");
-                Draw.art(scene.walls[direction - 1][scene.states[direction - 1]]);
-                System.out.println("\n" + scene.messages[direction - 1][scene.states[direction - 1]]);
+                Draw.art(scene.walls[direction][scene.states[direction]]);
+                System.out.println("\n" + scene.messages[direction][scene.states[direction]]);
                 System.out.println("\n=================================================\n");
                 
                 //Handle entered commands in game
@@ -129,9 +127,9 @@ public class Main extends Console
                 if (com.equals("left"))
                 {
                     //Turns to wall to the right by adding 1 to direction or recursing to 1 if direction = 4
-                    if (direction == 4)
+                    if (direction == 3)
                     {
-                        direction = 1;
+                        direction = 0;
                     }
                     else 
                     {
@@ -141,9 +139,9 @@ public class Main extends Console
                 else if (com.equals("right"))
                 {
                     //Turns to wall to the left by subtracting 1 from direction or recursing to 4 if direction = 1
-                    if (direction == 1)
+                    if (direction == 0)
                     {
-                        direction = 4;
+                        direction = 3;
                     }
                     else
                     {
@@ -152,30 +150,30 @@ public class Main extends Console
                 }
                 else if (com.equals("walk"))
                 {
-                    if (scene.doors[direction - 1] <= 0)
+                    if (scene.doors[direction] <= 0)
                     {
                         //If door value is negative it means the door is locked or was once locked
-                        if (scene.doors[direction - 1] % 4 == 0 && scene.doors[direction - 1] != 0)
+                        if (scene.doors[direction] % 4 == 0 && scene.doors[direction] != 0)
                         {
                             //If the door value is divisible by 4 or is not 0 then the door is unlocked
                             //Set the door value to what room it leads to after being unlocked by converting the string at second index 1 to an int
-                            scene.doors[direction - 1] = Integer.parseInt(RoomData.doorInfo[Math.abs((scene.doors[direction - 1]) / 4)][1]);
+                            scene.doors[direction] = Integer.parseInt(RoomData.doorInfo[Math.abs((scene.doors[direction]) / 4)][1]);
                             //Set the state to 0 to display the correct art
-                            scene.states[direction - 1] = 0;
+                            scene.states[direction] = 0;
                             //Set the win boolean by converting the string at second index 2 to a boolean, this only gets set false if the player triggered a booby trap behind a door
-                            win = Boolean.parseBoolean(RoomData.doorInfo[Math.abs((scene.doors[direction - 1]) / 4)][2]);
+                            win = Boolean.parseBoolean(RoomData.doorInfo[Math.abs((scene.doors[direction]) / 4)][2]);
                         }
                         else
                         {
                             //If the door value is not divisible by 
                             //Set the dialouge to the correct response depending on the door value
-                            dialouge = RoomData.doorInfo[Math.abs((scene.doors[direction - 1]))][0];
+                            dialouge = RoomData.doorInfo[Math.abs((scene.doors[direction]))][0];
                         }
                     }
-                    else if (scene.doors[direction - 1] == 2)
+                    else if (scene.doors[direction] == 2)
                     {
                         //Special animation for first door
-                        roomNum = scene.doors[direction - 1];
+                        roomNum = scene.doors[direction];
                         Draw.firstDoorAnim();
                     }
                     else
@@ -184,19 +182,19 @@ public class Main extends Console
                         If none of the previous conditions are met, it means there is regular door meaning door value represents room number it leads to
                         - roomNum is assigned the door value
                         */
-                        roomNum = scene.doors[direction - 1];
+                        roomNum = scene.doors[direction];
                         Draw.doorAnim();
                     }
                 }
                 else if (com.equals("i"))
                 {
                     //Calls interact method to trigger interactable based on the scene's special value
-                    Interaction.interact(scene.specials[direction - 1]);
+                    Interaction.interact(scene.specials[direction]);
                 }
                 else if (com.equals("pick"))
                 {
                     //Picks up an item if avaible
-                    if (scene.items[direction - 1] == null)
+                    if (scene.items[direction] == null)
                     {
                         //Handles when there is no item to pick up
                         dialouge = "There is no item here to pick up, so you grab at the air stupidly.\nIf you think you already picked something up type inv.";
@@ -204,10 +202,10 @@ public class Main extends Console
                     else
                     {
                         //Gets name of item that is avaible from item array
-                        String currentItem = scene.items[direction - 1];
+                        String currentItem = scene.items[direction];
                         //Sets the state of the wall to be 0 and the item value to "null" to signal the player has taken the item and to change the display art
-                        scene.states[direction - 1] = 0;
-                        scene.items[direction - 1] = "null";
+                        scene.states[direction] = 0;
+                        scene.items[direction] = "null";
                         //Assigns item to inventory using inventorySlotAssign as index
                         inventory[inventorySlotAssign] = currentItem;
                         //Increment inventorySlotAssign to assign next item to a new inventory slot

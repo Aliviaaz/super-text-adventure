@@ -41,46 +41,72 @@ public class Save extends Main
         }
         else
         {
-            newSave();
-        }
-    }
-
-    private static void newSave()
-    {
-        String saveName = readLine(Font.format("bold-default", "New Save File:") + "\nType " + Font.format("italic-defualt", "\'EDIT\'") + " to delete a save file\n" + Font.format("bold-default", "Name of Save: " + Font.INPUT_GREEN));
-        Font.reset();
-        if (saveName.equals("EDIT"))
-        {
-            deleteFile();
-        }
-        else if (directoryOverflow)
-        {
-            System.out.println("Maximum Number of Save Files Exceeded - please delete saves");
-            deleteFile();
-        }
-        else
-        {
-            try
+            String saveName = readLine(Font.format("bold-default", "New Save File:") + "\nType " + Font.format("italic-defualt", "\'EDIT\'") + " to delete a save file\n" + Font.format("bold-default", "Name of Save: " + Font.INPUT_GREEN));
+            Font.reset();
+            if (saveName.equals("EDIT"))
             {
-                File save = new File("saveGames/" + saveName + ".txt");
-                if(save.createNewFile())
-                {
-                    addItemToDir(saveName);
-                    FileWriter doc = new FileWriter("saveGames/" + saveName + ".txt");
-                    doc.write(formatSave());
-                    doc.close();
-                    System.out.println("Save Complete\n" + saveName);
-                }
-                else
-                {
-                    System.out.println("Save " + saveName + " Already Exists");
-                }
+                deleteFile();
             }
-            catch (IOException e)
+            else if (directoryOverflow)
             {
-                e.printStackTrace();
+                System.out.println("Maximum Number of Save Files Exceeded - please delete saves");
+                deleteFile();
             }
-            readLine("Press Enter");
+            else
+            {
+                try
+                {
+                    File save = new File("saveGames/" + saveName + ".txt");
+                    if(save.createNewFile())
+                    {
+                        String out = "Super Text Adventure Save File\n>\nroomNum: " + roomNum + ";\ndirection: " + direction + ";\nscore: " + score + ";\ndialouge: \"" + dialouge + "\";\ninventory: ";
+                        for (String i : inventory)
+                        {
+                            if (i == null)
+                            {
+                                out += ";";
+                                break;
+                            }
+                            else
+                            {
+                                out += "\"" + i + "\", ";
+                            }
+                        }
+                        out += "\ninventorySlotAssign: " + inventorySlotAssign;
+    
+                        for (RoomData.Room r : sceneCollection)
+                        {
+                            for (int i = 0; i < 4; i++)
+                            {
+                                if (r.doors[i] != 0)
+                                {
+                                    out += "\n" + r.name + ":doors:" + i + ": " + r.doors[i] + ";";
+                                }
+                
+                                if (r.states[i] != 0)
+                                {
+                                    out += "\n" + r.name + ":states:" + i + ": " + r.states[i] + ";";
+                                }
+                            }
+                        }
+    
+                        addItemToDir(saveName);
+                        FileWriter doc = new FileWriter("saveGames/" + saveName + ".txt");
+                        doc.write(out);
+                        doc.close();
+                        System.out.println("Save Complete\n" + saveName);
+                    }
+                    else
+                    {
+                        System.out.println("Save " + saveName + " Already Exists");
+                    }
+                }
+                catch (IOException e)
+                {
+                    e.printStackTrace();
+                }
+                readLine("Press Enter");
+            }
         }
     }
 
@@ -111,8 +137,7 @@ public class Save extends Main
     {
         try
         {
-            File directoryFile = new File("saveGames/dir.txt");
-            Scanner dirRead = new Scanner(directoryFile);
+            Scanner dirRead = new Scanner(new File("saveGames/dir.txt"));
             while (dirRead.hasNextLine())
             {
                 rawDirData += dirRead.nextLine();
@@ -167,39 +192,5 @@ public class Save extends Main
         {
             e.printStackTrace();
         }
-    }
-
-    private static String formatSave()
-    {
-        String out = "Super Text Adventure Save File\n>\nroomNum: " + roomNum + ";\ndirection: " + direction + ";\nscore: " + score + ";\ndialouge: \"" + dialouge + "\";\ninventory: ";
-        for (String i : inventory)
-        {
-            if (i == null)
-            {
-                out += ";";
-                break;
-            }
-            else
-            {
-                out += "\"" + i + "\", ";
-            }
-        }
-        out += "\ninventorySlotAssign: " + inventorySlotAssign;
-        for (RoomData.Room r : sceneCollection)
-        {
-            for (int i = 0; i < 4; i++)
-            {
-                if (r.doors[i] != 0)
-                {
-                    out += "\n" + r.name + ":doors:" + i + ": " + r.doors[i] + ";";
-                }
-
-                if (r.states[i] != 0)
-                {
-                    out += "\n" + r.name + ":states:" + i + ": " + r.states[i] + ";";
-                }
-            }
-        }
-        return out;
     }
 }
