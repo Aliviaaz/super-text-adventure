@@ -61,14 +61,9 @@ public class RoomData
     }
 
     //Room 1
-    private static String[][] wall = {{"tableNoLighter", "table"}, {"ripped", "poster"}, {"oakWall", "n"}, {"oakDoor", "n"}};
-    private static String[][] arr2 = {{"There is a table in front of you with a book on it titled \'README\'.\nType i to read the book.", "There is a table in front of you with a book on it titled \'README\'\nand a small candle.\nType i to read the book and pick to take the candle..."}, {"You look back and notice the ripped remains of the poster on the wall.", "There is a poster on the wall in front of you.\nThere is 'ESCAPE' printed clearly on it and series of incoherent words and scribbles riten below.\nYou feel compelled to rip it off the wall and take it.\nType pick to take the poster."}, {"This room feels so famillar and yet so out of this world.", "n"}, {"There is a door in front of you.\nType walk to open it and proceed to the next room.", "n"}};
-    private static int[] arr3 = {0,0,0,2};
-    private static String[] arr4 = {"$book", "n", "n", "n"};
-    private static int[] arr5 = {1,1,0,0};
-    private static String[] arr6 = {"candle", "paper", "n", "n"};
-    public static Room room1 = new Room("room1", wall, arr2, arr3, arr4, arr5, arr6);
+    public static Room room1 = loadResources(1);
     //Room 2
+    public static Room room2 = loadResources(2);
     //If clubOnGround = false, the player has the club in their inventory.
     //public static Room room2 = new Room("room2");
     
@@ -88,8 +83,14 @@ public class RoomData
     //Room 8 (devito final boss battle, player recieves trophy and game ends);
     //boolean devitoAlive = true;
 
-    public static String loadResources()
+    public static Room loadResources(int roomNum)
     {
+        String[] sp = new String[4];
+        int[] st = new int[4];
+        String[] it = new String[4];
+
+        String[][][] master = {new String[4][2], new String[4][2], new String[4][1], new String[4][1], new String[4][1], new String[4][1]}
+
         String resourceData = "";
         try
         {
@@ -104,6 +105,34 @@ public class RoomData
         {
             e.printStackTrace();
         }
+
+        int arrayCounter = 0;
+        int dimension1 = -1;
+        int dimension2 = -1;
+        boolean reading = false;
+
+        for (int i = 0; i < resourceData.length(); i++)
+        {
+            if (resourceData.charAt(i) == '>' && resourceData.charAt(i + 1) == Integer.toString(roomNum).charAt(0))
+            {
+                reading = true;
+            }
+
+            if (reading)
+            {
+                
+            }
+
+            if (resourceData.charAt(i) == '>')
+            {
+                break;
+            }
+        }
+        
+        int[] d = new int[4];
+        for (String i : master[2])
+
+        return new Room("room" + Integer.toString(roomNum), master[0], master[1], d, master[3], master[4], master[5]);
     }
 
     //Populates each room object with data

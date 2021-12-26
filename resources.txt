@@ -1,0 +1,19 @@
+Resource file contaning the states of all scene variables at the beggining of the game
+>1
+{{tableNoLighter, table}, {ripped, poster}, {oakWall, n}, {oakDoor, n}};
+{{There is a table in front of you with a book on it titled \'README\'.\nType i to read the book., There is a table in front of you with a book on it titled \'README\'\nand a small candle.\nType i to read the book and pick to take the candle...}, {You look back and notice the ripped remains of the poster on the wall., There is a poster on the wall in front of you.\nThere is 'ESCAPE' printed clearly on it and series of incoherent words and scribbles riten below.\nYou feel compelled to rip it off the wall and take it.\nType pick to take the poster.}, {This room feels so famillar and yet so out of this world., n}, {There is a door in front of you.\nType walk to open it and proceed to the next room., n}};
+{0,0,0,2};
+{$book, n, n, n};
+{1,1,0,0};
+{candle, paper, n, n};
+>2
+
+~
+~
+~
+~
+~
+~
+~
+~
+END
