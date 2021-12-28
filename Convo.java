@@ -25,7 +25,7 @@ public class Convo extends Main
     {
         if (talked)
         {
-            System.out.println("Get Away From Me! Go escape your the only one who can...");
+            System.out.println("Get Away From Me! GO ESCAPE!! You are the only one who can...");
             readLine("Press Enter");
             return;
         }
@@ -56,6 +56,10 @@ public class Convo extends Main
                 System.out.println("Eventually he gives in and introduces himself.");
                 System.out.println(newLine + "My name is Dan Harmon, the creator of Rick and \nMorty. Ever watch that show?");
                 question ++;
+            }
+            else if (reply.equals("debug"))
+            {
+                question = 8;
             }
             else
             {

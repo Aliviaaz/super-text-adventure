@@ -29,7 +29,12 @@ public class TriviaGame extends Main
         System.out.println(lineBreak + Font.format("bold-default", "HOW TO PLAY: ") + "\nThis is a trivia game. Input \"a\", \"b\", \"c\", \"d\", or \"e\". \nIf you answer all questions correctly, you will \nwin an important advantage...");
         System.out.println(lineBreak + "FAILING THIS TEST WILL RESULT IN DEATH\n" + lineBreak);
         namestart = readLine(lineBreak + "\nReady? Let's begin! Enter your name to start the game: \n > ");
-                
+        
+        if (namestart.equals("debug"))
+        {
+            return true;
+        }
+
         //Question 1
         answer = readLine(lineBreak + "When is my birthday? \na) November 17, 1944\nb) October 16, 1945\nc) March 2, 1951\nd) July 17, 1963\ne) November 16, 1954\n > ");
         if (answer.equals("a"))        
