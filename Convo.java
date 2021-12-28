@@ -139,5 +139,14 @@ public class Convo extends Main
                 error(reply, "Input \"a\" to end this interaction. \n > ");
             }
         }
+
+        while(question == 6)
+        {
+            System.out.println("The key code to the next room is: \n\n*The first 6 numbers of the Fibonacci sequence*");
+            System.out.println("Hint: The first 3 numbers are 1 1 2");
+            //Code is 1 1 2 3 5 8
+            reply = readLine("Once you are ready to move on, press Enter \n > ");
+            question++;
+        }
     }        
 }

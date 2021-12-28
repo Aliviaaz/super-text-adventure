@@ -99,6 +99,13 @@ public class Main extends Console
                 //Flips menu boolean breaking out of menu and killing program
                 menu = false;
             }
+            else if (input.equals("credits"))
+            {
+                System.out.println("Programmed in Java");
+                System.out.println("Created by: Rowan and Alivia");
+                System.out.println("With help from: Stack Overflow and w3schools.com");
+                System.out.println("Our Github Repository: https://github.com/Aliviaaz/super-text-adventure");
+            }
             else
             {
                 //Handle incorrect entry
