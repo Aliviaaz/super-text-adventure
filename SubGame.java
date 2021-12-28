@@ -10,7 +10,7 @@ public class SubGame extends Main
     private static boolean flip = true;
     private static int i = 0;
     private static boolean flag = false;
-    private static int score = 30;
+    private static int gameScore = 30;
     private static int tries = 3;
 
     public static Thread t = new Thread()
@@ -72,6 +72,7 @@ public class SubGame extends Main
         if (inventoryContains("_advantage"))
         {
             System.out.println("Good thing you did good on the questions earlier ill go easy on ya");
+            gameScore -= 10;
         }
         delay(2000);
         clear();
@@ -87,13 +88,13 @@ public class SubGame extends Main
                     break;
                 }
             }
-            score -= ((Math.abs(9 - i)) * -1) + 15;
+            gameScore -= ((Math.abs(9 - i)) * -1) + 15;
             read.nextLine();
             tries--;
             flag = false;
         }
         
-        if (score <= 0)
+        if (gameScore <= 0)
         {
             return true;
         }
@@ -124,7 +125,8 @@ public class SubGame extends Main
         }
         
         bar[i] = '▀';
-        System.out.println(INDENT + "Enemy Health: " + score + " Tries: " + tries);
+
+        System.out.println(INDENT + "Danny's Health: " + gameScore + " Your Health: " + (tries * 10));
         System.out.print(INDENT + " ________˅________\n" + INDENT + "|");
         System.out.print(bar);
         System.out.print("|\n\n" + INDENT + "Press Enter > ");

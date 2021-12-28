@@ -165,6 +165,8 @@ public class Main extends Console
                             scene.states[direction] = 0;
                             //Set the win boolean by converting the string at second index 2 to a boolean, this only gets set false if the player triggered a booby trap behind a door
                             win = Boolean.parseBoolean(DOOR_INFO[Math.abs((scene.doors[direction]) / 4)][2]);
+                            //Special animation
+                            Draw.lockedDoorAnim();
                         }
                         else
                         {

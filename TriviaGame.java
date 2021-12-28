@@ -1,14 +1,14 @@
 public class TriviaGame extends Main
 {
     public static String answer = "";
-    public static int score = 0;
+    public static int triviaScore = 0;
     public static String namestart = "";
             
     //Used often in code; stored in variables/methods
     public static String lineBreak = "=================================================\n";
     public static void printScore()
     {
-        System.out.println("Your score is: " + score);
+        System.out.println("Your score is: " + triviaScore);
     }
 
     public static boolean aliviaTrivia()
@@ -35,7 +35,7 @@ public class TriviaGame extends Main
         if (answer.equals("a"))        
         {
             System.out.println("Correct! Was that a lucky guess???");
-            score += 1;
+            triviaScore += 1;
             printScore();
         }
         else
@@ -48,7 +48,7 @@ public class TriviaGame extends Main
         if (answer.equals("d"))
         {
             System.out.println("Correct! You know your stuff, buddy.");
-            score += 1;
+            triviaScore += 1;
             printScore();
         }
         else
@@ -61,7 +61,7 @@ public class TriviaGame extends Main
         if (answer.equals("b"))
         {
             System.out.println("Correct! Did you know I directed the movie Matilda?");
-            score += 1;
+            triviaScore += 1;
             printScore();
         }
         else
@@ -74,7 +74,7 @@ public class TriviaGame extends Main
         if (answer.equals("c"))
         {
             System.out.println("Correct! We could be in a turtle's dream in outer space.");
-            score += 1;
+            triviaScore += 1;
             printScore();
         }
         else
@@ -87,18 +87,18 @@ public class TriviaGame extends Main
         answer = readLine(lineBreak + "Final question, how tall am I? \na) 4 feet 10 inches \nb) 5 feet 4 inches \nc) 5 feet 6 inches \nd) 4 feet 6 inches \ne) None of the above\n > ");
         if (answer.equals("a"))
         {
-            score += 1;
-            System.out.println("Correct! Your final score is: " + score);
+            triviaScore += 1;
+            System.out.println("Correct! Your final score is: " + triviaScore);
         }
         else
         {
-            System.out.println("Wrong! Your final score is: " + score);
+            System.out.println("Wrong! Your final score is: " + triviaScore);
         }
 
         //Endscene
         clear();
         delay(500);
-        if (score < 4)
+        if (triviaScore < 4)
         {
             System.out.println("The lights in the room turn back on. \n\n\nThe room is eerily silent.");
             delay(3000);
@@ -115,7 +115,7 @@ public class TriviaGame extends Main
             dialouge = "Danny devito has killed you because you couldn't answer enough questions right showing you were not a true fan";
             return false;
         }
-        else if (score == 4)
+        else if (triviaScore == 4)
         {
             System.out.println("The lights in the room turn back on. \n\n\nThe room is eerily silent.");
             delay(3000);
@@ -130,7 +130,7 @@ public class TriviaGame extends Main
             System.out.println("he had already disappeared.");
             return true;
         }
-        else if (score == 5)
+        else if (triviaScore == 5)
         {
             System.out.println("The lights in the room turn back on.\n\n\n");
             delay(3000);
