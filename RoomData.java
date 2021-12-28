@@ -58,22 +58,16 @@ public class RoomData
         String[] items = new String[4];
     }
 
-    //Room 1
+    //Room Objects
     public static Room room1 = loadResources(1);
-    //Room 2
     public static Room room2 = loadResources(2);
-    //Room 3
     public static Room room3 = loadResources(3);
-    //Room 4
     public static Room room4 = loadResources(4);  
-    //Room 5
     public static Room room5 = loadResources(5);
-    //Room 6 (has a slot machine; will figure out later)
-    
-    //Room 7 (player has to enter in a code to a keypad)
-    
-    //Room 8 (devito final boss battle, player recieves trophy and game ends);
-    //boolean devitoAlive = true;
+    public static Room room6 = loadResources(6);   
+    public static Room room7 = loadResources(7);
+    public static Room room8 = loadResources(8);
+
 
     private static String[][] declareArrayOfNull(int index1, int index2)
     {

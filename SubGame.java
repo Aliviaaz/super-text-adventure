@@ -77,6 +77,16 @@ public class SubGame extends Main
             System.out.println("Good thing you did good on the questions earlier ill go easy on ya");
             gameScore -= 10;
         }
+        else if (inventoryContains("weapon"))
+        {
+            System.out.println("Good thing you picked up that club from earlier you have something to give you an upper hand");
+        }
+        else
+        {
+            System.out.println("You have nothing to defend yourself and so the battle will be difficult");
+            gameScore += 20;
+        }
+        
         delay(2000);
         clear();
 
