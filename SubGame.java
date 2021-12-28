@@ -44,7 +44,7 @@ public class SubGame extends Main
         }
     };
 
-    public static void floatingPointGame()
+    public static boolean floatingPointGame()
     {
         clear();
         delay(2000);
@@ -54,6 +54,9 @@ public class SubGame extends Main
         delay(2000);
         System.out.println(Font.format("italic-red", "He is skinny and pasty, however you realize that..."));
         delay(2000);
+        Draw.art("dannyFight");
+        delay(5000);
+        clear();
         for (int i  = 0; i < 6; i++)
         {
             clear();
@@ -63,6 +66,15 @@ public class SubGame extends Main
             }
             delay(1000);
         }
+
+        clear();
+        System.out.println("YOU DARE TRY AND ESCAPE!" + Font.format("italic-default", "says danny") + "\nYou must no fight me to earn your freedom");
+        if (inventoryContains("_advantage"))
+        {
+            System.out.println("Good thing you did good on the questions earlier ill go easy on ya");
+        }
+        delay(2000);
+        clear();
 
         t.start();
         while (tries > 0)
@@ -83,11 +95,11 @@ public class SubGame extends Main
         
         if (score <= 0)
         {
-            System.out.println("YOU WON");
+            return true;
         }
         else
         {
-            System.out.println("YOU LOST");
+            return false;
         }
     }
 

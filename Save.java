@@ -4,6 +4,12 @@ import java.io.IOException;
 import java.io.FileNotFoundException;
 import java.util.Scanner;
 
+/*
+IMPORTANT:
+Save class is too complicated to finish now and we decided to leave it as is.
+In its current state it can write files and store the names of the save files in a file called "dir".
+However reading files is still not done and we never had time to get it finished.
+*/
 public class Save extends Main
 {
     private static String[] directory = {"Empty", "Empty", "Empty", "Empty", "Empty", "Empty", "Empty", "Empty", "Empty", "Empty"};
@@ -21,11 +27,11 @@ public class Save extends Main
 
         if (loadingGame)
         {
+            String rawData = "";
             String saveName = directory[readInt(Font.format("bold-default", "TYPE NUMBER OF FILE TO LOAD $") + Font.INPUT_GREEN + " > ") - 1];
             Font.reset();
             try
             {
-                String rawData = "";
                 File saveFile = new File("saveGames/" + saveName + ".txt");
                 Scanner fileRead = new Scanner(saveFile);
                 while (fileRead.hasNextLine())
@@ -59,7 +65,7 @@ public class Save extends Main
                     File save = new File("saveGames/" + saveName + ".txt");
                     if(save.createNewFile())
                     {
-                        String out = "Super Text Adventure Save File\n>\nroomNum: " + roomNum + ";\ndirection: " + direction + ";\nscore: " + score + ";\ndialouge: \"" + dialouge + "\";\ninventory: ";
+                        String out = "Super Text Adventure Save File\n>\nroomNum: " + roomNum + ";\ndirection: " + direction + ";\nscore: " + score + ";\ndialouge: " + dialouge + ";\ninventory: ";
                         for (String i : inventory)
                         {
                             if (i == null)
@@ -69,7 +75,7 @@ public class Save extends Main
                             }
                             else
                             {
-                                out += "\"" + i + "\", ";
+                                out += i + ", ";
                             }
                         }
                         out += "\ninventorySlotAssign: " + inventorySlotAssign;

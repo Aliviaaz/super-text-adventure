@@ -1,12 +1,59 @@
-Resource file contaning the states of all scene variables at the beggining of the game
+Resource file contaning all scene variables at the beggining of the game
 >1
-{{tableNoLighter, table}, {ripped, poster}, {oakWall, n}, {oakDoor, n}};
-{{There is a table in front of you with a book on it titled \'README\'.\nType i to read the book., There is a table in front of you with a book on it titled \'README\'\nand a small candle.\nType i to read the book and pick to take the candle...}, {You look back and notice the ripped remains of the poster on the wall., There is a poster on the wall in front of you.\nThere is 'ESCAPE' printed clearly on it and series of incoherent words and scribbles riten below.\nYou feel compelled to rip it off the wall and take it.\nType pick to take the poster.}, {This room feels so famillar and yet so out of this world., n}, {There is a door in front of you.\nType walk to open it and proceed to the next room., n}};
+{{tableNoLighter,table},
+{ripped,poster},
+{oakWall,null},
+{oakDoor,null}};
+{{There is a table in front of you with a book on it titled 'README'.\nType i to read the book.,There is a table in front of you with a book on it titled 'README'\nand a small candle.\nType i to read the book and pick to take the candle...},
+{You look back and notice the ripped remains of the poster on the wall.,There is a poster on the wall in front of you.\nThere is 'ESCAPE' printed clearly on it and series of incoherent words and scribbles riten below.\nYou feel compelled to rip it off the wall and take it.\nType pick to take the poster.},
+{This room feels so famillar and yet so out of this world.,null},
+{There is a door in front of you.\nType walk to open it and proceed to the next room.,null}};
 {0,0,0,2};
-{$book, n, n, n};
+{$book,null,null,null};
 {1,1,0,0};
-{candle, paper, n, n};
+{candle,paper,null,null}~
 >2
+{{newspaper,null},
+{oakDoor,null},
+{brickWall,club},
+{brickDoor,null}};
+{{You are startled by a wall of newspaper clippings and photos.\nYou notice articles describing the downfall of the career of cinema great\nDanny Devito...\nType i to take a closer look.,null},
+{You look towards the door to the first room.\nPerhaps you could just hide in there and hope this is a dream.,null},
+{You look at the cracks worn in the brick.\nThe club seems as it has been used before...\nbut by who?,There is a club on the wall in front of you.\nIt seems like it will come in useful later.\nType pick to take it.},
+{There is a door in front of you worn by age.\nType walk to go through it...\nbut first\, what really catches your attention\nis the club on the wall to your right.,null}};
+{0,1,0,3};
+{$newspapers,null,null,null};
+{0,0,1,0};
+{null,null,weapon,null}~
+>3
+{{openDoor,lockedDoor},
+{brickDoor,null},
+{vertWall,null},
+{spookyDoor,null}};
+{{The door hangs open a bit.\nYou hesitate to see what's inside\,\nbut you realize it is your only way out.\nType walk to go through...,You stare at the steel door.\nYou can hear strange noises coming from inside...\nType i to try and unlock the door.},
+{You look back at the door to the room with the club.,null},
+{There is a wall in front of you with old peeling tan wall paper.,null},
+{You are hit by the stench of mildew.\nA large steel door to your left has a padlock on it.\nIn front of you is another old spooky door.\nType walk to see what is on the other side...,null}};
+{-1,2,0,4};
+{door,null,null,null};
+{1,0,0,0};
+{null,null,null,null}~
+>4
+{{brickWall,brickWallKey},
+{spookyDoor,null},
+{brickWall},
+{oakDoor,null}};
+{{There is a small key laying on the wall infront of you\nMaybe it will be useful for that big steel door in the other room\nType pick to take it,The cracked dusty stone walls of this room haunt you},
+{You stare at the spooky heavy door which you just came through.\nMaybe the key in here will help unlock that metal door from the last room,null},
+{Who put you here\nwhy are you here\nwho is writing this text your are reading\nwhy havent you graded our finals yet\nwhy are we learning a language that was made when bush was clinton was president,null},
+{You are enveloped by dust and grit coming from this room which almost feels like a tomb\nThere is a flimsy oak door infront of you.\nType walk to open it,null}};
+{0,3,0,-3};
+{null,null,null,null};
+{1,0,0,0};
+{key,null,null,null}~
+>5
+{{},
+{},
 
 ~
 ~

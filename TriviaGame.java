@@ -112,7 +112,7 @@ public class TriviaGame extends Main
             delay(3000);
             System.out.println("You are BLINDED by his striking beauty.");
             delay(3000);
-            System.out.println(lineBreak + "YOU DIED. GAME OVER.\n" + lineBreak);
+            dialouge = "Danny devito has killed you because you couldn't answer enough questions right showing you were not a true fan";
             return false;
         }
         else if (score == 4)

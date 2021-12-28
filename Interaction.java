@@ -9,7 +9,7 @@ public class Interaction extends Main
             Draw.art(in);
             readLine("\nPress Enter");
         }
-        else if (in == "door")
+        else if (in.equals("door"))
         {
             if (scene.doors[direction] == -2)
             {
@@ -34,9 +34,13 @@ public class Interaction extends Main
                 }
             }
         }
-        else if (in == "trivia")
+        else if (in.equals("trivia"))
         {
             win = TriviaGame.aliviaTrivia();
+        }
+        else if (in.equals("subGame"))
+        {
+            win = SubGame.floatingPointGame();
         }
     }
 }

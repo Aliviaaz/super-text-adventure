@@ -3,7 +3,7 @@ public class Main extends Console
     //Position on map - default room 1
     public static int roomNum = 1;
     //sceneCollection array stores object references for each room
-    public static RoomData.Room[] sceneCollection = {RoomData.room1};
+    public static RoomData.Room[] sceneCollection = {RoomData.room1, RoomData.room2, RoomData.room3};
     //Current scene to read from
     public static RoomData.Room scene = null;
     /*Direction - default north
@@ -51,7 +51,7 @@ public class Main extends Console
             inventorySlotAssign = 0;
 
             Draw.art("title");
-            System.out.println("NOW WITH VISUALS " + Font.format("red", "A") + Font.format("green", "N") + Font.format("yellow", "D ") + Font.format("blue", "I") + Font.format("purple", "N ") + Font.format("cyan", "C") + Font.format("lred", "O") + Font.format("lgreen", "L") + Font.format("lyellow", "O") + Font.format("lblue", "R") + Font.format("italic-default", "\n\'Journey Through Danny Devito's Basement...\'") + "\nCreated by: Alivia and Rowan\n\n" + Font.format("bold-italic-default" ," ============== Instructions ==============\n\n") + Font.RESET + Font.format("green", " GREEN ") + "Start Menu Only Commands\n" + Font.format("blue", " BLUE ") + "In Game Commands Only\n" + Font.format("cyan", " CYAN ") + "Both in Game and Start Menu Commands\n >" + Font.format("green", " start") + " - starts game\n >" + Font.format("cyan", " load") + " - load a saved game\n >" + Font.format("green", " edit") + " - delete save files\n >" + Font.format("blue", " save") + " - save progress\n >" + Font.format("blue", " left") + " - turn left\n >" + Font.format("blue", " right") + " - turn right\n >" + Font.format("blue", " walk") + " - move forward\n >" + Font.format("blue", " i") + " - interact with surroundings\n >" + Font.format("blue",  " pick") + " - pick up items\n >" + Font.format("blue", " inv") + " - shows invintory\n >" +  Font.format("yellow", " color") + " - displays color test DEV ONLY\n >" + Font.format("blue", " help") + " - displays help message\n >" + Font.format("cyan", " quit") + " - quit game\n\n");
+            System.out.println("NOW WITH VISUALS " + Font.format("red", "A") + Font.format("green", "N") + Font.format("yellow", "D ") + Font.format("blue", "I") + Font.format("purple", "N ") + Font.format("cyan", "C") + Font.format("lred", "O") + Font.format("lgreen", "L") + Font.format("lyellow", "O") + Font.format("lblue", "R") + Font.format("italic-default", "\n\'Journey Through Danny Devito's Basement...\'") + "\nCreated by: Alivia and Rowan\n\n" + Font.format("bold-italic-default" ," ============== Instructions ==============\n\n") + Font.RESET + Font.format("green", " GREEN ") + "Start Menu Only Commands\n" + Font.format("blue", " BLUE ") + "In Game Commands Only\n" + Font.format("cyan", " CYAN ") + "Both in Game and Start Menu Commands\n >" + Font.format("green", " start") + " - starts game\n >" + Font.format("cyan", " load") + " - load a saved game ~UNFINISHED~\n >" + Font.format("green", " edit") + " - delete save files ~UNSTABLE~\n >" + Font.format("blue", " save") + " - save progress ~UNSTABLE~\n >" + Font.format("blue", " left") + " - turn left\n >" + Font.format("blue", " right") + " - turn right\n >" + Font.format("blue", " walk") + " - move forward\n >" + Font.format("blue", " i") + " - interact with surroundings\n >" + Font.format("blue",  " pick") + " - pick up items\n >" + Font.format("blue", " inv") + " - shows invintory\n >" +  Font.format("yellow", " color") + " - displays color test DEV ONLY\n >" + Font.format("blue", " help") + " - displays help message\n >" + Font.format("cyan", " quit") + " - quit game\n\n");
             //Menu Command Handling
             String input = readLine(Font.format("bold-default", "ENTER-COMMAND $") + Font.INPUT_GREEN + " > ");
             Font.reset();
@@ -92,7 +92,7 @@ public class Main extends Console
                     Font.reset();
                 }
                 Font.reset();
-                readLine("Color Test Complete - Press Enter");
+                readLine("\nColor Test Complete - Press Enter");
             }
             else if (input.equals("quit"))
             {
@@ -112,10 +112,10 @@ public class Main extends Console
                 scene = sceneCollection[roomNum - 1];
 
                 //Main GUI Block
-                System.out.println("Score: " + score);
-                System.out.println(Font.format("italic-red", dialouge));
+                System.out.println("Score: " + score + "\n" + Font.format("italic-red", dialouge));
                 Draw.miniMap(direction);
                 dialouge = "";
+                System.out.println("DEBUG: " + scene.walls[direction][scene.states[direction]]); //DEBUG
                 System.out.println("=================================================\n");
                 Draw.art(scene.walls[direction][scene.states[direction]]);
                 System.out.println("\n" + scene.messages[direction][scene.states[direction]]);
@@ -150,6 +150,9 @@ public class Main extends Console
                 }
                 else if (com.equals("walk"))
                 {
+                    //Constant information and responses for each door
+                    final String[][] DOOR_INFO = {{"There is no door here so you smack straight into the wall and look like an idiot.", "0", "true"}, {"The door is locked and you realize you need a key to open it.", "5", "true"}, {"The door is locked and you realize you need a code to open it.", "8", "true"}, {"You opened the door and fell into a trap set by Devito.", "-3", "false"}};
+
                     if (scene.doors[direction] <= 0)
                     {
                         //If door value is negative it means the door is locked or was once locked
@@ -157,17 +160,17 @@ public class Main extends Console
                         {
                             //If the door value is divisible by 4 or is not 0 then the door is unlocked
                             //Set the door value to what room it leads to after being unlocked by converting the string at second index 1 to an int
-                            scene.doors[direction] = Integer.parseInt(RoomData.doorInfo[Math.abs((scene.doors[direction]) / 4)][1]);
+                            scene.doors[direction] = Integer.parseInt(DOOR_INFO[Math.abs((scene.doors[direction]) / 4)][1]);
                             //Set the state to 0 to display the correct art
                             scene.states[direction] = 0;
                             //Set the win boolean by converting the string at second index 2 to a boolean, this only gets set false if the player triggered a booby trap behind a door
-                            win = Boolean.parseBoolean(RoomData.doorInfo[Math.abs((scene.doors[direction]) / 4)][2]);
+                            win = Boolean.parseBoolean(DOOR_INFO[Math.abs((scene.doors[direction]) / 4)][2]);
                         }
                         else
                         {
                             //If the door value is not divisible by 
                             //Set the dialouge to the correct response depending on the door value
-                            dialouge = RoomData.doorInfo[Math.abs((scene.doors[direction]))][0];
+                            dialouge = DOOR_INFO[Math.abs((scene.doors[direction]))][0];
                         }
                     }
                     else if (scene.doors[direction] == 2)
@@ -194,7 +197,7 @@ public class Main extends Console
                 else if (com.equals("pick"))
                 {
                     //Picks up an item if avaible
-                    if (scene.items[direction] == null)
+                    if (scene.items[direction] == "null")
                     {
                         //Handles when there is no item to pick up
                         dialouge = "There is no item here to pick up, so you grab at the air stupidly.\nIf you think you already picked something up type inv.";
@@ -213,7 +216,7 @@ public class Main extends Console
 
                         //Display item that was picked up
                         clear();
-                        System.out.println("NEW ITEM! =====================\nYou Picked Up: " + currentItem);
+                        System.out.println(Font.format("italic-bold-default", "NEW ITEM! =====================") + "\nYou Picked Up: " + Font.format("italic-blue", currentItem));
                         Draw.art(currentItem);
                         readLine("\nPress Enter");
                     }
@@ -221,7 +224,7 @@ public class Main extends Console
                 else if (com.equals("inv"))
                 {
                     //Displays all items in inventory by looping through inventory array and using each string as input for the art method to display the items in a graphical way
-                    System.out.println("\nITEMS IN YOUR INVENTORY:");
+                    System.out.println(Font.format("bold-italic-default", "\nITEMS IN YOUR INVENTORY:"));
                     for (String i : inventory)
                     {
                         if (i != null && !i.startsWith("_"))
