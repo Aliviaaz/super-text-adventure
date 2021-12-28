@@ -2,6 +2,7 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.Scanner;
 
+//IMPORTANT room data system has changed majorly since we made the explanation video all room data is now read from resource.txt file
 public class RoomData
 {
     //Basic structure of each room
@@ -64,13 +65,9 @@ public class RoomData
     //Room 3
     public static Room room3 = loadResources(3);
     //Room 4
-    //public static Room room4 = loadResources(4);
-    //If keyPresent = false, the player has the key in their inventory
-    
+    public static Room room4 = loadResources(4);  
     //Room 5
-    //If battleWon = false, it means the player won and got a medal as a prize.
-    //boolean battleWon = false;
-    
+    public static Room room5 = loadResources(5);
     //Room 6 (has a slot machine; will figure out later)
     
     //Room 7 (player has to enter in a code to a keypad)
@@ -186,7 +183,7 @@ public class RoomData
                         master[arrayCounter][dimension1][dimension2] += ',';
                         i++;
                     }
-                    else
+                    else if (c != '>')
                     {
                         master[arrayCounter][dimension1][dimension2] += c;
                     }

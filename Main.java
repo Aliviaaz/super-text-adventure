@@ -3,7 +3,7 @@ public class Main extends Console
     //Position on map - default room 1
     public static int roomNum = 1;
     //sceneCollection array stores object references for each room
-    public static RoomData.Room[] sceneCollection = {RoomData.room1, RoomData.room2, RoomData.room3};
+    public static RoomData.Room[] sceneCollection = {RoomData.room1, RoomData.room2, RoomData.room3, RoomData.room4, RoomData.room5};
     //Current scene to read from
     public static RoomData.Room scene = null;
     /*Direction - default north
@@ -31,6 +31,7 @@ public class Main extends Console
     public static String[] inventory = new String[10];
     public static int inventorySlotAssign = 0;
 
+    //START POINT OF PROGRAM
     public static void main(String args[])
     {
         boolean menu = true;
@@ -51,7 +52,7 @@ public class Main extends Console
             inventorySlotAssign = 0;
 
             Draw.art("title");
-            System.out.println("NOW WITH VISUALS " + Font.format("red", "A") + Font.format("green", "N") + Font.format("yellow", "D ") + Font.format("blue", "I") + Font.format("purple", "N ") + Font.format("cyan", "C") + Font.format("lred", "O") + Font.format("lgreen", "L") + Font.format("lyellow", "O") + Font.format("lblue", "R") + Font.format("italic-default", "\n\'Journey Through Danny Devito's Basement...\'") + "\nCreated by: Alivia and Rowan\n\n" + Font.format("bold-italic-default" ," ============== Instructions ==============\n\n") + Font.RESET + Font.format("green", " GREEN ") + "Start Menu Only Commands\n" + Font.format("blue", " BLUE ") + "In Game Commands Only\n" + Font.format("cyan", " CYAN ") + "Both in Game and Start Menu Commands\n >" + Font.format("green", " start") + " - starts game\n >" + Font.format("cyan", " load") + " - load a saved game ~UNFINISHED~\n >" + Font.format("green", " edit") + " - delete save files ~UNSTABLE~\n >" + Font.format("blue", " save") + " - save progress ~UNSTABLE~\n >" + Font.format("blue", " left") + " - turn left\n >" + Font.format("blue", " right") + " - turn right\n >" + Font.format("blue", " walk") + " - move forward\n >" + Font.format("blue", " i") + " - interact with surroundings\n >" + Font.format("blue",  " pick") + " - pick up items\n >" + Font.format("blue", " inv") + " - shows invintory\n >" +  Font.format("yellow", " color") + " - displays color test DEV ONLY\n >" + Font.format("blue", " help") + " - displays help message\n >" + Font.format("cyan", " quit") + " - quit game\n\n");
+            System.out.println("NOW WITH VISUALS " + Font.format("red", "A") + Font.format("green", "N") + Font.format("yellow", "D ") + Font.format("blue", "I") + Font.format("purple", "N ") + Font.format("cyan", "C") + Font.format("lred", "O") + Font.format("lgreen", "L") + Font.format("lyellow", "O") + Font.format("lblue", "R") + Font.format("italic-default", "\n\'Journey Through Danny Devito's Basement...\'") + "\nCreated by: Alivia and Rowan\n\n" + Font.format("bold-italic-default" ," ============== Commands ==============\n\n") + Font.RESET + Font.format("green", " GREEN ") + "Start Menu Only Commands\n" + Font.format("blue", " BLUE ") + "In Game Commands Only\n" + Font.format("cyan", " CYAN ") + "Both in Game and Start Menu Commands\n >" + Font.format("green", " start") + " - starts game\n >" + Font.format("cyan", " load") + " - load a saved game ~UNFINISHED~\n >" + Font.format("green", " edit") + " - delete save files ~UNSTABLE~\n >" + Font.format("blue", " save") + " - save progress ~UNSTABLE~\n >" + Font.format("blue", " left") + " - turn left\n >" + Font.format("blue", " right") + " - turn right\n >" + Font.format("blue", " walk") + " - move forward\n >" + Font.format("blue", " i") + " - interact with surroundings\n >" + Font.format("blue",  " pick") + " - pick up items\n >" + Font.format("blue", " inv") + " - shows invintory\n >" +  Font.format("yellow", " color") + " - displays color test DEV ONLY\n >" + Font.format("green", " credits")+ " - its in the name" + Font.format("blue", " help") + " - displays help message\n >" + Font.format("cyan", " quit") + " - quit game\n\n");
             //Menu Command Handling
             String input = readLine(Font.format("bold-default", "ENTER-COMMAND $") + Font.INPUT_GREEN + " > ");
             Font.reset();
@@ -101,10 +102,8 @@ public class Main extends Console
             }
             else if (input.equals("credits"))
             {
-                System.out.println("Programmed in Java");
-                System.out.println("Created by: Rowan and Alivia");
-                System.out.println("With help from: Stack Overflow and w3schools.com");
-                System.out.println("Our Github Repository: https://github.com/Aliviaaz/super-text-adventure");
+                System.out.println("Programmed in vanilla Java without extending CodeHS ConsoleProgram class\nCreated by: Rowan and Alivia\nWith help from: Stack Overflow and w3schools.com\nOur Github Repository: https://github.com/Aliviaaz/super-text-adventure \nASCII Art sources:\nhttps://asciiart.eu \nhttps://asciiart.club/ \nhttps://patorjk.com/software/taag/ \nDesign Document: https://docs.google.com/spreadsheets/d/17BfPbQF8DGfT0UR8KVZENnbKVPCTLqlaxsWFzzFS-Kc/edit?usp=sharing \n");
+                readLine("\nPress Enter");
             }
             else
             {
@@ -113,16 +112,21 @@ public class Main extends Console
             }
             
             //Main Game Loop
-            while (win)
+            while (true)
             {
                 //Creates a reference for things by moving a Room object from sceneCollection array into the "scene" object
                 scene = sceneCollection[roomNum - 1];
 
+                //Handles specials starting with @ which are situations where the player has no control over if they interact or not
+                if (scene.specials[direction].startsWith("@"))
+                {
+                    Interaction.interact(scene.specials[direction]);
+                }
+
                 //Main GUI Block
-                System.out.println("Score: " + score + "\n" + Font.format("italic-red", dialouge));
+                System.out.println(Font.format("yellow", "Score: " + score) + "\n" + Font.format("italic-red", dialouge));
                 Draw.miniMap(direction);
                 dialouge = "";
-                System.out.println("DEBUG: " + scene.walls[direction][scene.states[direction]]); //DEBUG
                 System.out.println("=================================================\n");
                 Draw.art(scene.walls[direction][scene.states[direction]]);
                 System.out.println("\n" + scene.messages[direction][scene.states[direction]]);
@@ -188,6 +192,11 @@ public class Main extends Console
                         roomNum = scene.doors[direction];
                         Draw.firstDoorAnim();
                     }
+                    else if (scene.doors[direction] == 100)
+                    {
+                        endGame();
+                        break;
+                    }
                     else
                     {
                         /*
@@ -222,6 +231,8 @@ public class Main extends Console
                         inventory[inventorySlotAssign] = currentItem;
                         //Increment inventorySlotAssign to assign next item to a new inventory slot
                         inventorySlotAssign++;
+                        //Give the player a better score
+                        score += 5;
 
                         //Display item that was picked up
                         clear();
@@ -259,7 +270,7 @@ public class Main extends Console
                 {
                     //Flips win boolean to false to signal the player has quit
                     win = false;
-                    endGame();
+                    finale();
                 }
                 else if (com.equals("help"))
                 {
@@ -273,6 +284,11 @@ public class Main extends Console
                     dialouge = Font.format("bold-red", "Error:") + " You Might Have Entered an Incorrect Command Type help";
                 }
                 clear();
+                if (!win)
+                {
+                    endGame();
+                    break;
+                }
             }
             clear();
         }
@@ -283,6 +299,44 @@ public class Main extends Console
         //End of Game Screen
         Draw.art("lost");
         readLine("\n========================================================================\n \nScore: " + score + "\n" + dialouge + "\nPress Enter to Continue");
+    }
+
+    private static void finale()
+    {
+        clear();
+        delay(500);
+        System.out.println("You walk up the stairs but you hear something following you...");
+        delay(4000);
+        System.out.println("You turn back and see it is Dan Harmon limping after you");
+        delay(4000);
+        System.out.println("\'DeVito was a good man, just led down the wrong path, kinda like the joker\' he says,\n\'atleast give him the respect he deserves by giving him a proper burial and then we can get out of here\'");
+        delay(4000);
+        if (inventoryContains("candle") && readLine("Type yes to give danny DeVito a viking funeral").equals("yes"))
+        {
+            System.out.println("You and Harmon Give Danny Devito a viking funeral and burn his body");
+            delay(4000);
+            clear();
+            for (int i = 0; i < 31; i++)
+            {
+                for (int a = 0; a < 4; a++)
+                {
+                    String[] frames = {"▓███████████████████████████████████████████████████████████████████████████████\n████████████████████████████████████████████████████████████████████████████████\n████████████████████████████████████████████████████████████████████████████████\n████████████████████████████████████████████████████████████████████████████████\n████████████████████████████████████████████████████████████████████████████████\n███████████████████████████████████████████████████████████████████████████████\n████████████████████████████████████████████████████████████████████████████████\n▓███████████████████████████████████████████████████████████████████████████████\n▓███████████████████████████████████████████████████████████████████████████████\n╫███████████████████▓██████████████████▓╬╣██████████████████████████████████████\n╟█▓╬▓▓╟▓████▓████████▓▓▓██████████▓▓███▓▒░▓██████████████████████████████████▓╬▒\n╠▓▓╣▓╬╠╣▓██▓╣█████████▓▓▓██████▓▓╬╬▓███▓▒░╣███████████████████████████▓█▓▓▓▓╬╬╠░\n╠╬▓▓▓╬╠╬███▓╬▓▓╬▓██████▓╣██████▓╬╬╣▓███▓╬▒╬▓████████████████████████╬╩╚╬╬╬╬╬╠▒░░\n╠╠╣▓▓▓╬╣██▓╬╬╬╠╬╣██████▓╣██████▓▓▓▓▓████╬╠╬▓███▓███████████████████╬░░░╬╬╣▓╬▒░░░\nφ╚╬▓██▓▓▓▓╬╙╙╠╠╟▓█████▓╬╟▓██████▓▓██████▓╬╣▓███▓██████████████████╬░░░╚╠╬╣▓╬▒░░░\n░╠▒╫▓█▓╬▓╬▒░░░╙╠██████╬▒╠╬▓████▓▓████████▓█████╬▓╬╣█████████████▓╬▒░░░░╙╠╣╣╬▒░░░\n░╠╬╟▓▓▓╠╣▓╬░░░░░╫▓▓██▓╬╠╟╬▓███▓╬╣██████████████▓╬╩╠▓╬▓████████╬╬▒╠░░░░░░░╟▓╬╬▒φ∩\n╠╠▒╠╠╣▓╬▓▓▓▒░░░φ╣▓╣▓▓╬╬╬╬╬╣▓██▓╠╬▓██████▓▓█████╬╬▒╬╬╬╬▓██████▓▓╬╬░▒░░░░░░╠╣╬╬╠╠▒\n╠▒░╠╠╬▓▓▓▓▓╬░░░╠╣╬╬╬╬╠╬╬▓╣╬╬╣▓▓╬╣▓█▓▓██▓▓╣╬▓▓▓╬╩╠╬╬╠░╚╬╬▓▓▓▓╣╬▓▓╬φ░░░░░░φ╫▓▓╬╠╠░\n╠╠φ╠╠╬▓▓▓██╬▒░░░╠▒╠╩╠░╠╠╬╬╬▓▓▓▓▓▓▓▓╣╬╣╣╬╬╣▓▓▓╬▒╚╚╠╩▒░░╠╠╬╬╣╬╬╣╬╬╬▒░░░░░░╠╣▓▓▓╬╬░\n║╬╬╚╠╠╣▓▓▓▓╬╬░░░░▒╠▒░░░╙╬╠╟▓▓▓▓▓█▓▓╬╠╬╠╣▓▓▓╬╬╬▒░░╬▒░░░░╚╬╬╬╬▒╬╬╠╙░░░░░░░╠▓▓▓╬╬╠╠\n╠╩▒▒▒░╟▓▓▓▓▓▒░░░░╠░▒░░░░╠▒╠▓▓▓▓▓██▓╠╠▒╠╣▓╬╬╬╠╩░░░╠▒░░░░φ╬▓▓▓╬╬░░░φ░░╠░░░░╫▓╬╬╬╬▒\n╠▒╠╬▒░╠╣▓▓▓╬▒░░░░╠▒▒▒φ╠░╠▒╠╬╬╠╩╠╬▓╩╚╩╠╠╬╬╬╬▒░░░░░▒▒░░╚░╠╬▓▓▓╬╚░░░╠▒╠▒░░░░░╠▒╩╠╟╬\n║╬╣╬╬░╠▓▓▓╬╬▒░░░░░░╠╬╬╠▒╠╠▒Γ╙░░░╚Γ░░░░╠╬╠▒░░░╠░░░╠▒░░φ░╠▓▓▓╬▒░░░░╠╚╠╠░░░░░░░▒╠╢╬\n║╬╬▓╬░░╠▓╬╬╬▒░░░░Γ░╠╬╬▒╠░╙░░░░░░░░░░░░╙╚╚░░░░╚░░░╩░░░╚░╠╣▓▓▓░░░░░░░╠╬▒φ░░░░▒▒╠╠▌\n╠╣╣▓╬░░╠╩╠╠╬╠░░░░░░░╬▒░╠░░░░░░░░░░░░░░░░░░░░φ╠░░░░░░░░░╚╬╬╬╠▒░░░░░░╠╬╬╠╠░░╠▒▒╠╬╬\n╠╠╠╬▒░░╚░▒╠╠▒░░░░░░░╚▒▒░░░░░░░░░░░░░░░░░░░░░φ╠▒▒░░░░░░░░░░╠╬░░░░░░φ╠╬╬╠╬▒░▒░▒╠╠╬",};
+                    System.out.println("\033[43m" + frames[a]);
+                    Font.reset();
+                    delay(500);
+                }
+            }
+        }
+        else
+        {
+            System.out.println("You never picked up the candle so you have nothing to cremate devito with.\nForget that noise you say to Harmon");
+            delay(4000);
+        }
+        System.out.println("You and Harmon walk off into the sunset shaken by the day you have experienced");
+        delay(4000);
+        clear();
+        Draw.art("win");
+        readLine("\n========================================================================\n \nScore: " + score + "       " + Font.format("italic-defualt", "You Survived Danny Devito's Basement") + "\nPress Enter to Continue");
     }
 
     public static boolean inventoryContains(String item)

@@ -56,10 +56,54 @@ Resource file contaning all scene variables at the beginning of the game
 {oakDoor,null},
 {openDoor,null},
 {brickDoor,null}};
-{{You are in a room of doors },
-{},
-{},
-{}};
+{{You are in a room of doors there is a flimsy wooden door infront of you and an identical one to the left.\n Both look suspicious\nit might be booby traped,null},
+{There is another door infront of you\nthis one looks suspicious too,null},
+{You look back at the steel door you came through to get into this nightmare of a rooom},
+{There is a sturdy looking door infront of you\nType walk to open it}};
+{-3,-3,3,6};
+{@trivia,null,null,null};
+{0,0,0,0};
+{null,null,null,null}~
+>6
+{{danHarmonHunched,null},
+{brickDoor,null},
+{vertWall,null},
+{oakDoor,null}};
+{{You see a small hunched over man with a long grey beard\nHe seems harmless and you wonder if he's another victim of Danny\nType i to aproach him,null},
+{You look back at the door to the room where danny interogated you\nYou vow never return into there,null},
+{This room is covered with tacky wall paper,null},
+{This room feels very safe compared to all the past rooms youve been in.\nThere is a wood door infront of you but before you open it a small figure to your left catches your eye,null}};
+{0,5,0,7};
+{null,null,null,null};
+{0,0,0,0};
+{null,null,null,null}~
+>7
+{{openDoor,lockedDoor},
+{oakDoor,null},
+{mathWall,null},
+{brickWall,null}};
+{{There is a big metal door that requires a keypad to open.\nYou realise it stands between you and the outside world,null},
+{You look back at the door to the room where Dan Harmon so weekly hid in,null},
+{You notice a poster about math and the fibonaci sequence.\nDan Harmon was saying you needed that for the code\nType i to look at it,null},
+{You are in a drafty room. There is wind coming through the cracks in the brick.\nYou can tell you are near the outside.\nYou see it\, another heavy metal door stands between you and freedom to your left,null}};
+{-2,6,0,0};
+{door,null,$mathPoster,null};
+{1,0,0,0};
+{null,null,null,null}~
+>8
+{{stairs,null},
+{oakWall,null},
+{openDoor,null},
+{oakWall,null}};
+{{There are stairs leading out of this basement type walk to finally leave this hell, null},
+{Escape is to the right},
+{Escape is to the left},
+{You look back at the steel door this place has changed you,null}};
+{100,0,7,0};
+{@subGame,null,null,null};
+{0,0,0,0};
+{null,null,null,null}~
+>9
 ~
 ~
 ~

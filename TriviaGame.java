@@ -26,7 +26,7 @@ public class TriviaGame extends Main
         System.out.println("Danny Devito smiles and then the lights in the room go out.");
         delay(3000);
         clear();
-        System.out.println(lineBreak + "HOW TO PLAY: \nThis is a trivia game. Input \"a\", \"b\", \"c\", \"d\", or \"e\". \nIf you answer all questions correctly, you will \nwin an important advantage...");
+        System.out.println(lineBreak + Font.format("bold-default", "HOW TO PLAY: ") + "\nThis is a trivia game. Input \"a\", \"b\", \"c\", \"d\", or \"e\". \nIf you answer all questions correctly, you will \nwin an important advantage...");
         System.out.println(lineBreak + "FAILING THIS TEST WILL RESULT IN DEATH\n" + lineBreak);
         namestart = readLine(lineBreak + "\nReady? Let's begin! Enter your name to start the game: \n > ");
                 
@@ -43,6 +43,7 @@ public class TriviaGame extends Main
             System.out.println("Wrong! My birthday is on November 17, 1944.");
             printScore();
         }
+        clear();
         //Question 2 
         answer = readLine(lineBreak + "Where is my hometown? \na) Kansas \nb) California \nc) Pennsylvania \nd) New Jersey \ne) Florida \n > ");
         if (answer.equals("d"))
@@ -56,6 +57,7 @@ public class TriviaGame extends Main
             System.out.println("Wrong! I'm from New Jersey you idiot!!");
             printScore();
         }
+        clear();
         //Question 3
         answer = readLine(lineBreak + "Which film have I NOT appeared in? \na) Twins \nb) Daddy's Home 2 \nc) The Lorax \nd) Matilda \ne) Space Jam \n > ");
         if (answer.equals("b"))
@@ -69,6 +71,7 @@ public class TriviaGame extends Main
             System.out.println("Wrong! Seriously?");
             printScore();
         }
+        clear();
         //Question 4
         answer = readLine(lineBreak + "What is the name of the film production company \nI founded in 1991? \na) Happy Danny Productions\nb) Searchlight Pictures \nc) Jersey Films\nd) Miramax Films\ne) Devito Studios \n > ");
         if (answer.equals("c"))
@@ -82,7 +85,7 @@ public class TriviaGame extends Main
             System.out.println("Wrong! Use your brain next time.");
             printScore();
         }
-
+        clear();
         //Question 5
         answer = readLine(lineBreak + "Final question, how tall am I? \na) 4 feet 10 inches \nb) 5 feet 4 inches \nc) 5 feet 6 inches \nd) 4 feet 6 inches \ne) None of the above\n > ");
         if (answer.equals("a"))
@@ -94,7 +97,7 @@ public class TriviaGame extends Main
         {
             System.out.println("Wrong! Your final score is: " + triviaScore);
         }
-
+        clear();
         //Endscene
         clear();
         delay(500);
@@ -128,6 +131,7 @@ public class TriviaGame extends Main
             System.out.println("You open your mouth to respond \nbut as you turn around to look at Danny...\n");
             delay(3000);
             System.out.println("he had already disappeared.");
+            score += 10;
             return true;
         }
         else if (triviaScore == 5)
@@ -143,6 +147,7 @@ public class TriviaGame extends Main
             System.out.println("he had already disappeared.");
             inventory[inventorySlotAssign] = "_advantage";
             inventorySlotAssign++;
+            score += 20;
             return true;
         }
         return false;

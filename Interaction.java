@@ -13,9 +13,29 @@ public class Interaction extends Main
         {
             if (scene.doors[direction] == -2)
             {
-                if (inventoryContains("_code"))
+                boolean codeCorrect = true;
+                int[] correctCode = {1,1,2,3,5};
+                int[] temp = new int[5];
+                for (int i = 0; i < 6; i++)
+                {
+                    clear();
+                    Draw.keyPad(temp);
+                    temp[i] = readInt("Enter Digit " + i + ": ");
+                }
+
+                for (int i = 0; i < temp.length; i++)
+                {
+                    if (temp[i] != correctCode[i])
+                    {
+                        codeCorrect = false;
+                        break;
+                    }
+                }
+
+                if (codeCorrect)
                 {
                     scene.doors[direction] *= 4;
+                    dialouge = "You typed the correct code, Type walk to open the door a bit";
                 }
                 else
                 {
@@ -27,6 +47,7 @@ public class Interaction extends Main
                 if (inventoryContains("key"))
                 {
                     scene.doors[direction] *= 4;
+                    dialouge = "You unlocked the door, Type walk to push it open a bit";
                 }
                 else
                 {
@@ -34,11 +55,15 @@ public class Interaction extends Main
                 }
             }
         }
-        else if (in.equals("trivia"))
+        else if (in.equals("convo"))
+        {
+            Convo.conversation();
+        }
+        else if (in.equals("@trivia"))
         {
             win = TriviaGame.aliviaTrivia();
         }
-        else if (in.equals("subGame"))
+        else if (in.equals("@subGame"))
         {
             win = SubGame.floatingPointGame();
         }

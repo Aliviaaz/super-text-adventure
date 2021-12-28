@@ -3,6 +3,7 @@ public class SubGame extends Main
     /*
     Small Puzzle for Text Adventure project that can be implemented
     as a method through the main() method
+    Originally developed as an outside program
     By: Rowan Clinch
     */
     private final static String INDENT = "                                  ";
@@ -12,6 +13,8 @@ public class SubGame extends Main
     private static boolean flag = false;
     private static int gameScore = 30;
     private static int tries = 3;
+    private static boolean flash = false;
+    private final static String CONSOLE_MODE_RED = "\033[31m";
 
     public static Thread t = new Thread()
     {
@@ -57,10 +60,10 @@ public class SubGame extends Main
         Draw.art("dannyFight");
         delay(5000);
         clear();
-        for (int i  = 0; i < 6; i++)
+        for (int a  = 0; a < 6; a++)
         {
             clear();
-            if (i % 2 == 0)
+            if (a % 2 == 0)
             {
                 Draw.art("dannyFight");
             }
@@ -84,6 +87,7 @@ public class SubGame extends Main
             {
                 if (read.nextLine().equals(""))
                 {
+                    flash = true;
                     flag = true;
                     break;
                 }
@@ -96,10 +100,19 @@ public class SubGame extends Main
         
         if (gameScore <= 0)
         {
+            clear();
+            Draw.art("KO");
+            System.out.println(Font.format("bold-italic-red", "DANNY DEVITO LOSES"));
+            score += tries * 10;
+            readLine("Press Enter");
             return true;
         }
         else
         {
+            clear();
+            Draw.art("KO");
+            System.out.println(Font.format("bold-italic-red", "YOU LOSE"));
+            readLine("Press Enter");
             return false;
         }
     }
@@ -126,10 +139,23 @@ public class SubGame extends Main
         
         bar[i] = '▀';
 
+        if (flash)
+        {
+            System.out.println(CONSOLE_MODE_RED);
+            flash = false;
+        }
+
+        Draw.art("dannyFightScreen");
+        if (i % 2 == 0)
+        {
+            System.out.println("\n");
+        }
+
         System.out.println(INDENT + "Danny's Health: " + gameScore + " Your Health: " + (tries * 10));
         System.out.print(INDENT + " ________˅________\n" + INDENT + "|");
         System.out.print(bar);
         System.out.print("|\n\n" + INDENT + "Press Enter > ");
         bar[i] = '_';
+        Font.reset();
     }
 }

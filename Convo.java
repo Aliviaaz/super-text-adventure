@@ -18,10 +18,26 @@ public class Convo extends Main
     //Integer representing which question the player is on (will increment by one after the player chooses a or b)
     public static int question = 0;
 
+    private static boolean talked = false;
+
     //Main method containing user dialogue for conversation with Dan Harmon
     public static void conversation()
     {
+        if (talked)
+        {
+            System.out.println("Get Away From Me! Go escape your the only one who can...");
+            readLine("Press Enter");
+            return;
+        }
+
+        //Prevents player from having convo twice
+        talked = true;
+
+        score += 10;
+
         System.out.println(newLine + "You approach the bearded man with a crazed look in his eyes.");
+        Draw.art("danHarmon");
+        delay(4000);
         question = 1;
 
         //1) Introduction
@@ -142,9 +158,9 @@ public class Convo extends Main
 
         while(question == 6)
         {
-            System.out.println("The key code to the next room is: \n\n*The first 6 numbers of the Fibonacci sequence*");
+            System.out.println("The key code to the next room is: \n\n*The first 5 numbers of the Fibonacci sequence*");
             System.out.println("Hint: The first 3 numbers are 1 1 2");
-            //Code is 1 1 2 3 5 8
+            //Code is 1 1 2 3 5
             reply = readLine("Once you are ready to move on, press Enter \n > ");
             question++;
         }
