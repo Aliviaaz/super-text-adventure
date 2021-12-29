@@ -2,7 +2,10 @@
 CodeHS bad
 # Important Stuff
 [ANSI and ASCII Control Characters and Sequences](https://gist.github.com/fnky/458719343aabd01cfb17a3a4f7296797)
+
 [Design Doc](https://docs.google.com/spreadsheets/d/17BfPbQF8DGfT0UR8KVZENnbKVPCTLqlaxsWFzzFS-Kc/edit?usp=sharing)
+
+[CodeHS Project](https://codehs.com/sandbox/id/super-text-adventure-44dwSG)
 # Example save file
 ```
 Super Text Adventure Save File
