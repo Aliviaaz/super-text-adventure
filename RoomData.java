@@ -58,7 +58,7 @@ public class RoomData
         String[] items = new String[4];
     }
 
-    //Room Objects
+    //Room
     public static Room room1 = loadResources(1);
     public static Room room2 = loadResources(2);
     public static Room room3 = loadResources(3);

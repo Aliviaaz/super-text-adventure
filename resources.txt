@@ -43,7 +43,7 @@ Resource file contaning all scene variables at the beginning of the game
 {spookyDoor,null},
 {brickWall},
 {oakDoor,null}};
-{{There is a small key laying on the wall infront of you\nMaybe it will be useful for that big steel door in the other room\nType pick to take it,The cracked dusty stone walls of this room haunt you},
+{{The cracked dusty stone walls of this room haunt you,There is a small key laying on the wall infront of you\nMaybe it will be useful for that big steel door in the other room\nType pick to take it},
 {You stare at the spooky heavy door which you just came through.\nMaybe the key in here will help unlock that metal door from the last room,null},
 {Who put you here\nwhy are you here\nwho is writing this text your are reading\nwhy havent you graded our finals yet\nwhy are we learning a language that was made when bush was clinton was president,null},
 {You are enveloped by dust and grit coming from this room which almost feels like a tomb\nThere is a flimsy oak door infront of you.\nType walk to open it,null}};
@@ -74,7 +74,7 @@ Resource file contaning all scene variables at the beginning of the game
 {This room is covered with tacky wall paper,null},
 {This room feels very safe compared to all the past rooms youve been in.\nThere is a wood door infront of you but before you open it a small figure to your left catches your eye,null}};
 {0,5,0,7};
-{null,null,null,null};
+{convo,null,null,null};
 {0,0,0,0};
 {null,null,null,null}~
 >7
@@ -82,7 +82,7 @@ Resource file contaning all scene variables at the beginning of the game
 {oakDoor,null},
 {mathWall,null},
 {brickWall,null}};
-{{There is a big metal door that requires a keypad to open.\nYou realise it stands between you and the outside world,null},
+{{The door hangs open Type walk,There is a big metal door that requires a keypad to open.\nYou realise it stands between you and the outside world},
 {You look back at the door to the room where Dan Harmon so weekly hid in,null},
 {You notice a poster about math and the fibonaci sequence.\nDan Harmon was saying you needed that for the code\nType i to look at it,null},
 {You are in a drafty room. There is wind coming through the cracks in the brick.\nYou can tell you are near the outside.\nYou see it\, another heavy metal door stands between you and freedom to your left,null}};
@@ -97,8 +97,8 @@ Resource file contaning all scene variables at the beginning of the game
 {oakWall,null}};
 {{There are stairs leading out of this basement type walk to finally leave this hell, null},
 {Escape is to the right},
-{Escape is to the left},
-{You look back at the steel door this place has changed you,null}};
+{You look back at the steel door this place has changed you,null},
+{Escape is to the left}};
 {100,0,7,0};
 {@subGame,null,null,null};
 {0,0,0,0};

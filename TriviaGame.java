@@ -5,7 +5,7 @@ public class TriviaGame extends Main
     public static String namestart = "";
             
     //Used often in code; stored in variables/methods
-    public static String lineBreak = "=================================================\n";
+    public static String lineBreak = Font.format("bold-yellow", "=================================================\n");
     public static void printScore()
     {
         System.out.println("Your score is: " + triviaScore);
@@ -98,6 +98,7 @@ public class TriviaGame extends Main
         {
             System.out.println("Wrong! Your final score is: " + triviaScore);
         }
+        clear();
         //Endscene
         delay(500);
         if (triviaScore < 4)
@@ -115,7 +116,7 @@ public class TriviaGame extends Main
             System.out.println("You are BLINDED by his striking beauty.");
             delay(3000);
             dialouge = "Danny devito has killed you because you couldn't answer enough questions right showing you were not a true fan";
-            return false;
+            return true;
         }
         else if (triviaScore == 4)
         {
@@ -131,7 +132,7 @@ public class TriviaGame extends Main
             delay(3000);
             System.out.println("he had already disappeared.");
             score += 10;
-            return true;
+            return false;
         }
         else if (triviaScore == 5)
         {
@@ -147,8 +148,8 @@ public class TriviaGame extends Main
             inventory[inventorySlotAssign] = "_advantage";
             inventorySlotAssign++;
             score += 20;
-            return true;
+            return false;
         }
-        return false;
+    return true;
     }
 }

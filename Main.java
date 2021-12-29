@@ -50,6 +50,16 @@ public class Main extends Console
                 inventory[i] = "";
             }
             inventorySlotAssign = 0;
+            Interaction.reset();
+            //reload room data
+            sceneCollection[0] = RoomData.loadResources(1);
+            sceneCollection[1] = RoomData.loadResources(2);
+            sceneCollection[2] = RoomData.loadResources(3);
+            sceneCollection[3] = RoomData.loadResources(4);
+            sceneCollection[4] = RoomData.loadResources(5);
+            sceneCollection[5] = RoomData.loadResources(6);
+            sceneCollection[6] = RoomData.loadResources(7);
+            sceneCollection[7] = RoomData.loadResources(8);
 
             Draw.art("title");
             System.out.println("NOW WITH VISUALS " + Font.format("red", "A") + Font.format("green", "N") + Font.format("yellow", "D ") + Font.format("blue", "I") + Font.format("purple", "N ") + Font.format("cyan", "C") + Font.format("lred", "O") + Font.format("lgreen", "L") + Font.format("lyellow", "O") + Font.format("lblue", "R") + Font.format("italic-default", "\n\'Journey Through Danny Devito's Basement...\'") + "\nCreated by: Alivia and Rowan\n\n" + Font.format("bold-italic-default" ," ============== Commands ==============\n\n") + Font.RESET + Font.format("green", " GREEN ") + "Start Menu Only Commands\n" + Font.format("blue", " BLUE ") + "In Game Commands Only\n" + Font.format("cyan", " CYAN ") + "Both in Game and Start Menu Commands\n >" + Font.format("green", " start") + " - starts game\n >" + Font.format("cyan", " load") + " - load a saved game ~UNFINISHED~\n >" + Font.format("green", " edit") + " - delete save files ~UNSTABLE~\n >" + Font.format("blue", " save") + " - save progress ~UNSTABLE~\n >" + Font.format("blue", " left") + " - turn left\n >" + Font.format("blue", " right") + " - turn right\n >" + Font.format("blue", " walk") + " - move forward\n >" + Font.format("blue", " i") + " - interact with surroundings\n >" + Font.format("blue",  " pick") + " - pick up items\n >" + Font.format("blue", " inv") + " - shows invintory\n >" +  Font.format("yellow", " color") + " - displays color test DEV ONLY\n >" + Font.format("green", " credits")+ " - its in the name" + Font.format("blue", " help") + " - displays help message\n >" + Font.format("cyan", " quit") + " - quit game\n\n");
@@ -112,7 +122,7 @@ public class Main extends Console
             }
             
             //Main Game Loop
-            while (true)
+            while (win)
             {
                 //Creates a reference for things by moving a Room object from sceneCollection array into the "scene" object
                 scene = sceneCollection[roomNum - 1];
@@ -121,6 +131,12 @@ public class Main extends Console
                 if (scene.specials[direction].startsWith("@"))
                 {
                     Interaction.interact(scene.specials[direction]);
+                }
+
+                if (!win)
+                {
+                    endGame();
+                    break;
                 }
 
                 //Main GUI Block
@@ -147,6 +163,11 @@ public class Main extends Console
                         direction += 1;
                     }
                 }
+                else if (com.startsWith("jmp"))
+                {
+                    //DEBUG DEV TOOLS
+                    roomNum = Integer.parseInt(Character.toString(com.charAt(3)));
+                }
                 else if (com.equals("right"))
                 {
                     //Turns to wall to the left by subtracting 1 from direction or recursing to 4 if direction = 1
@@ -162,7 +183,7 @@ public class Main extends Console
                 else if (com.equals("walk"))
                 {
                     //Constant information and responses for each door
-                    final String[][] DOOR_INFO = {{"There is no door here so you smack straight into the wall and look like an idiot.", "0", "true"}, {"The door is locked and you realize you need a key to open it.", "5", "true"}, {"The door is locked and you realize you need a code to open it.", "8", "true"}, {"You opened the door and fell into a trap set by Devito.", "-3", "false"}};
+                    final String[][] DOOR_INFO = {{"There is no door here so you smack straight into the wall and look like an idiot.", "0"}, {"The door is locked and you realize you need a key to open it.", "5"}, {"The door is locked and you realize you need a code to open it.", "8"}, {"You opened the door and fell into a trap set by Devito.", "-3"}};
 
                     if (scene.doors[direction] <= 0)
                     {
@@ -174,8 +195,6 @@ public class Main extends Console
                             scene.doors[direction] = Integer.parseInt(DOOR_INFO[Math.abs((scene.doors[direction]) / 4)][1]);
                             //Set the state to 0 to display the correct art
                             scene.states[direction] = 0;
-                            //Set the win boolean by converting the string at second index 2 to a boolean, this only gets set false if the player triggered a booby trap behind a door
-                            win = Boolean.parseBoolean(DOOR_INFO[Math.abs((scene.doors[direction]) / 4)][2]);
                             //Special animation
                             Draw.lockedDoorAnim();
                         }
@@ -184,6 +203,12 @@ public class Main extends Console
                             //If the door value is not divisible by 
                             //Set the dialouge to the correct response depending on the door value
                             dialouge = DOOR_INFO[Math.abs((scene.doors[direction]))][0];
+                            //Returns boolean by converting the string at second index 2 to a boolean, this only gets set false if the player triggered a booby trap behind a door
+                            if (scene.doors[direction] == -3)
+                            {
+                                win = false;
+                                break;
+                            }
                         }
                     }
                     else if (scene.doors[direction] == 2)
@@ -194,7 +219,7 @@ public class Main extends Console
                     }
                     else if (scene.doors[direction] == 100)
                     {
-                        endGame();
+                        finale();
                         break;
                     }
                     else
@@ -215,7 +240,7 @@ public class Main extends Console
                 else if (com.equals("pick"))
                 {
                     //Picks up an item if avaible
-                    if (scene.items[direction] == "null")
+                    if (scene.items[direction].equals("null"))
                     {
                         //Handles when there is no item to pick up
                         dialouge = "There is no item here to pick up, so you grab at the air stupidly.\nIf you think you already picked something up type inv.";
@@ -284,19 +309,15 @@ public class Main extends Console
                     dialouge = Font.format("bold-red", "Error:") + " You Might Have Entered an Incorrect Command Type help";
                 }
                 clear();
-                if (!win)
-                {
-                    endGame();
-                    break;
-                }
             }
             clear();
         }
     }
 
-    private static void endGame()
+    public static void endGame()
     {
         //End of Game Screen
+        clear();
         Draw.art("lost");
         readLine("\n========================================================================\n \nScore: " + score + "\n" + dialouge + "\nPress Enter to Continue");
     }
@@ -311,19 +332,21 @@ public class Main extends Console
         delay(4000);
         System.out.println("\'DeVito was a good man, just led down the wrong path, kinda like the joker\' he says,\n\'atleast give him the respect he deserves by giving him a proper burial and then we can get out of here\'");
         delay(4000);
-        if (inventoryContains("candle") && readLine("Type yes to give danny DeVito a viking funeral").equals("yes"))
+        clear();
+        if (inventoryContains("candle") && readLine("Type yes to give danny DeVito a viking funeral: ").equals("yes"))
         {
             System.out.println("You and Harmon Give Danny Devito a viking funeral and burn his body");
             delay(4000);
             clear();
-            for (int i = 0; i < 31; i++)
+            for (int i = 0; i < 11; i++)
             {
                 for (int a = 0; a < 2; a++)
                 {
                     String[] frames = {"▓███████████████████████████████████████████████████████████████████████████████\n████████████████████████████████████████████████████████████████████████████████\n████████████████████████████████████████████████████████████████████████████████\n████████████████████████████████████████████████████████████████████████████████\n████████████████████████████████████████████████████████████████████████████████\n███████████████████████████████████████████████████████████████████████████████\n████████████████████████████████████████████████████████████████████████████████\n▓███████████████████████████████████████████████████████████████████████████████\n▓███████████████████████████████████████████████████████████████████████████████\n╫███████████████████▓██████████████████▓╬╣██████████████████████████████████████\n╟█▓╬▓▓╟▓████▓████████▓▓▓██████████▓▓███▓▒░▓██████████████████████████████████▓╬▒\n╠▓▓╣▓╬╠╣▓██▓╣█████████▓▓▓██████▓▓╬╬▓███▓▒░╣███████████████████████████▓█▓▓▓▓╬╬╠░\n╠╬▓▓▓╬╠╬███▓╬▓▓╬▓██████▓╣██████▓╬╬╣▓███▓╬▒╬▓████████████████████████╬╩╚╬╬╬╬╬╠▒░░\n╠╠╣▓▓▓╬╣██▓╬╬╬╠╬╣██████▓╣██████▓▓▓▓▓████╬╠╬▓███▓███████████████████╬░░░╬╬╣▓╬▒░░░\nφ╚╬▓██▓▓▓▓╬╙╙╠╠╟▓█████▓╬╟▓██████▓▓██████▓╬╣▓███▓██████████████████╬░░░╚╠╬╣▓╬▒░░░\n░╠▒╫▓█▓╬▓╬▒░░░╙╠██████╬▒╠╬▓████▓▓████████▓█████╬▓╬╣█████████████▓╬▒░░░░╙╠╣╣╬▒░░░\n░╠╬╟▓▓▓╠╣▓╬░░░░░╫▓▓██▓╬╠╟╬▓███▓╬╣██████████████▓╬╩╠▓╬▓████████╬╬▒╠░░░░░░░╟▓╬╬▒φ∩\n╠╠▒╠╠╣▓╬▓▓▓▒░░░φ╣▓╣▓▓╬╬╬╬╬╣▓██▓╠╬▓██████▓▓█████╬╬▒╬╬╬╬▓██████▓▓╬╬░▒░░░░░░╠╣╬╬╠╠▒\n╠▒░╠╠╬▓▓▓▓▓╬░░░╠╣╬╬╬╬╠╬╬▓╣╬╬╣▓▓╬╣▓█▓▓██▓▓╣╬▓▓▓╬╩╠╬╬╠░╚╬╬▓▓▓▓╣╬▓▓╬φ░░░░░░φ╫▓▓╬╠╠░\n╠╠φ╠╠╬▓▓▓██╬▒░░░╠▒╠╩╠░╠╠╬╬╬▓▓▓▓▓▓▓▓╣╬╣╣╬╬╣▓▓▓╬▒╚╚╠╩▒░░╠╠╬╬╣╬╬╣╬╬╬▒░░░░░░╠╣▓▓▓╬╬░\n║╬╬╚╠╠╣▓▓▓▓╬╬░░░░▒╠▒░░░╙╬╠╟▓▓▓▓▓█▓▓╬╠╬╠╣▓▓▓╬╬╬▒░░╬▒░░░░╚╬╬╬╬▒╬╬╠╙░░░░░░░╠▓▓▓╬╬╠╠\n╠╩▒▒▒░╟▓▓▓▓▓▒░░░░╠░▒░░░░╠▒╠▓▓▓▓▓██▓╠╠▒╠╣▓╬╬╬╠╩░░░╠▒░░░░φ╬▓▓▓╬╬░░░φ░░╠░░░░╫▓╬╬╬╬▒\n╠▒╠╬▒░╠╣▓▓▓╬▒░░░░╠▒▒▒φ╠░╠▒╠╬╬╠╩╠╬▓╩╚╩╠╠╬╬╬╬▒░░░░░▒▒░░╚░╠╬▓▓▓╬╚░░░╠▒╠▒░░░░░╠▒╩╠╟╬\n║╬╣╬╬░╠▓▓▓╬╬▒░░░░░░╠╬╬╠▒╠╠▒Γ╙░░░╚Γ░░░░╠╬╠▒░░░╠░░░╠▒░░φ░╠▓▓▓╬▒░░░░╠╚╠╠░░░░░░░▒╠╢╬\n║╬╬▓╬░░╠▓╬╬╬▒░░░░Γ░╠╬╬▒╠░╙░░░░░░░░░░░░╙╚╚░░░░╚░░░╩░░░╚░╠╣▓▓▓░░░░░░░╠╬▒φ░░░░▒▒╠╠▌\n╠╣╣▓╬░░╠╩╠╠╬╠░░░░░░░╬▒░╠░░░░░░░░░░░░░░░░░░░░φ╠░░░░░░░░░╚╬╬╬╠▒░░░░░░╠╬╬╠╠░░╠▒▒╠╬╬\n╠╠╠╬▒░░╚░▒╠╠▒░░░░░░░╚▒▒░░░░░░░░░░░░░░░░░░░░░φ╠▒▒░░░░░░░░░░╠╬░░░░░░φ╠╬╬╠╬▒░▒░▒╠╠╬","▓███████████████████████████████████████████████████████████████████████████████\n████████████████████████████████████████████████████████████████████████████████\n▓███████████████████████████████████████████████████████████████████████████████\n╫███████████████████████████████████████████████████████████████████████████████\n╫███████████████████████████████████████████████████████████████████████████████\n▓███████████████████████████████████████████████████████████████████▓╟████████╣▓\n╟███████████▓███████████████████████████████████████████████████████▓╬████████▓▓\n╫███████████▓╬╣▓███████████████████████████████████████████████████╣▓▒╟╬███████▓\n╫███████████╬╬╠▓███████████████████████████████████████████████████▓▓░╚▓▓███████\n╫█▓█████████▓╬╠███████████████████████████████████████████████████▓╬╬░░╟▓███████\n╫█▓██████████▓╣██████▓██████████████████████████████▓╣████████████╬╬╬░░╟███████▓\n╫█████████████▓╬╣██▓▓▓▓▓███████████████████████╬▓██▓╣▓╬▓█████████▓╬╬▓▒░╟████████\n╫█▓▓▓▓███████╬╚╠╟▓▓▓╬╬╣╬▓████████████▓████████▓▒╟█▓╬╬▓╬▓██████▓╬╬▓▓╣▓╬░╠╟███████\n╫▓▓█▓╬██████▓▒░░╟▓▓▓▓╣▓╬▓▓▓█████████▓▓█████▓╬╬╬▒╟▓▓╬╣▓▓▓█████▓╬╣▓█▓▓▓╬░╠╠╣██████\n╫████▓▓█████▓▒░░╠▓╣▓███▓▓█▓╣▓╬╩╬▓▓╬╬╬╬▓███╬╬╬▓▓╬╣█▓╬╬▓╣▓█████╬╬╬╣█▓▓▓╬╠▒░╩╠╬╣▓██\n╫████▓▓█████▓▒░░╚╣╣▓██▓▓▓▓╬╬╠╠░╠╠╬╩░│░╣▓▓╬╬╣╣▓╬╬╣▓▓╬╣▓╬▓████╬▒╚╠╚╠╬▓█▓╬╬╬░╟▓▓▓██\n╫████╬╣██▓▓▓▓▒░░░╠╬╣█▓╬▓╬╬╬╬▒╠░░╠╬▒░░░╠╬╬╬╚╠╣▓▓╬╬╬╬╠╠╬╬▓████▓▒░░░╠╠▓██▓▓╬╬▓▓▓███\n╟███▓╬╟╣╬╣▓▓▓╬░░░╙╬╬▓▓▓╬╬╠╬▒░▐▒φ╠╠▒░░░░╠╠╠░╠╣▓▓▓╬╬╬╠╬╩╠╠╬╣██╬▒░░░╠╣▓██▓█▓╬╬╣▓▓▓█\n╫▓▓╬╬░╠╬╬▓▓▓▓╬░░░░░╠╣▓▓▓╬╬╬▒░░╠╠╠╬░░░░░╠╬▒░╟╣▓▓█▓╬╠░╩░░░░╚╬╬╬▒░░░╠▓███▓▓╬╣▓▓╣▓▓█\n╟▓▓╬▒░╠╬╬╣▓╬╬╬░░░░φ╬▓▓▓▓╬╬╬▒φφ▒╠╠╬░░░░░░╩░╚╟▓▓╬╬▓╬▒░░░░░░░╠╬╬░░░╠╣▓███▓╬╬▓▓▓╬╬╩╬\n╟▓▓╬▒░╠╣╬╣╣╬▓╬▒░░░░╣▓╬╚╠╬╬╬╬╬╠╬╬╟╬░░░░░░░░░╠╣▓╬╬╣╬╬░░░░░░░Γ╙╠░░░╠╬▓███▓╬╬╬╬▓╬╬░╠\n║▓▓▓╬▒╬╬╬╬╬╬▓╬▒░░░░╬╬╩░╠╬╠╣╬╠╬╬▒╠╬░░░░░░░╠░╠╠▓╬╠╬▒╙░░░░░░░░░░░░░╠╬╬╣▓▓╣╬╬╬╬╬╬▒░╠\n╟▓▓▓▓▓╬╬╬╬╣▓▓╬░░░░░╙╚░░░╠╣▓▓╣╣╬▒░╠░░░░░░░╠▒╠╠╬╠╬╬░░░░░░░░░░░░░░╠╠╠╬╣╬╣╬╠╠╩╠╬╬▒░╠\n╫▓▓▓▓╬╬╬╠╣▓▓▓▓▒░░░░░░░░░╚╬▓▓▓╬╩░░╠╬╠░░░░░░░╠╠╬▒╚╠░░░░░░░░░╠▒░░φ░╚░╠╠╬╬╬░░Γ░Γ░╚╠▓\n╟█▓▓╬╬╬░▒╠╟╬▓▓╬░░░░░░░░░░╟▓╬╬╬▒▒╬░╠▒░░░░░░░╠╠╬▒░░░░░░░░▒░░░╠╠▒╠▒░░╠░╚╚░░░░░░░░╠╠\n╟▓╬╬╠╬╬╠╠╠╬╬╠╬╬░░░░░░░░░▒╠╬╬╬╠╠╠╩░╚▒░░░░░░░░╠╬▒░╠▒╠╠░░░╠░░░░╙╠▒╠▒░░░░░░░░░░░░╠╠╠\n╠╬╚╠╚╠╠╠░╚╚╠╠╬▒░░░░░░░░░╠╠╬╠╬╬░▒░░░░░░░░░░░φ╠╬╬░░░╠▒░░░░░░░░░╚╩╠░░░░░░░░░░░░░░╚░"};
+                    clear();
                     System.out.println("\033[43m" + frames[a]);
                     Font.reset();
-                    delay(500);
+                    delay(900);
                 }
             }
         }
@@ -332,6 +355,7 @@ public class Main extends Console
             System.out.println("You never picked up the candle so you have nothing to cremate devito with.\nForget that noise you say to Harmon");
             delay(4000);
         }
+        clear();
         System.out.println("You and Harmon walk off into the sunset shaken by the day you have experienced");
         delay(4000);
         clear();

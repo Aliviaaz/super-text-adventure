@@ -1,5 +1,13 @@
 public class Interaction extends Main
 {
+    private static boolean triviaPlayed = false;
+    private static boolean subGamePlayed = false;
+    public static void reset()
+    {
+        triviaPlayed = false;
+        subGamePlayed = false;
+    }
+
     public static void interact(String in)
     {
         //Handles all special interactions, mini games, or interactable items in game
@@ -16,11 +24,11 @@ public class Interaction extends Main
                 boolean codeCorrect = true;
                 int[] correctCode = {1,1,2,3,5};
                 int[] temp = new int[5];
-                for (int i = 0; i < 6; i++)
+                for (int i = 0; i < 5; i++)
                 {
                     clear();
                     Draw.keyPad(temp);
-                    temp[i] = readInt("Enter Digit " + i + ": ");
+                    temp[i] = readInt("\n\n      Enter Digit " + (i + 1) + ": ");
                 }
 
                 for (int i = 0; i < temp.length; i++)
@@ -39,8 +47,9 @@ public class Interaction extends Main
                 }
                 else
                 {
-                    dialouge = "You look at the door and realize you must enter something on the keypad to open the door.";
+                    dialouge = "The keypad buzzes and you realize you have entered the wrong password, try looking for help like the math poster in the room";
                 }
+                readLine("Press Enter");
             }
             else if (scene.doors[direction] == -1)
             {
@@ -59,13 +68,21 @@ public class Interaction extends Main
         {
             Convo.conversation();
         }
-        else if (in.equals("@trivia"))
+        else if (in.equals("@trivia") && !triviaPlayed)
         {
-            win = TriviaGame.aliviaTrivia();
+            triviaPlayed = true;
+            if (TriviaGame.aliviaTrivia())
+            {
+                win = false;
+            }
         }
-        else if (in.equals("@subGame"))
+        else if (in.equals("@subGame") && !subGamePlayed)
         {
-            win = SubGame.floatingPointGame();
+            subGamePlayed = true;
+            if (SubGame.floatingPointGame())
+            {
+                win = false;
+            }
         }
     }
 }

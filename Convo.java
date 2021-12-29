@@ -25,7 +25,7 @@ public class Convo extends Main
     {
         if (talked)
         {
-            System.out.println("Get Away From Me! GO ESCAPE!! You are the only one who can...");
+            System.out.println("Get Away From Me! GO ESCAPE!! You are the only one who can... Says Harmon");
             readLine("Press Enter");
             return;
         }
@@ -35,6 +35,7 @@ public class Convo extends Main
 
         score += 10;
 
+        clear();
         System.out.println(newLine + "You approach the bearded man with a crazed look in his eyes.");
         Draw.art("danHarmon");
         delay(4000);
